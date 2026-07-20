@@ -28,6 +28,7 @@ import {
   Layers,
   Image as ImageIcon
 } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 const CONDITIONS = [
   { value: "new", label: "New" },
@@ -135,7 +136,8 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["ai-drafts"] });
       setErrorMsg(null);
-      alert("Draft changes saved successfully.");
+      // alert("Draft changes saved successfully.");
+      toast.success('Draft changes saved successfully.')
     },
     onError: (err: any) => setErrorMsg(err.message || "Failed to save draft changes"),
   });
