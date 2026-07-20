@@ -4,6 +4,7 @@ import { serverFetch } from "@/lib/api/server-fetch";
 import { formatPrice, formatCondition } from "@/lib/utils";
 import type { Product } from "@/types/product";
 import type { Metadata } from "next";
+import { AddToCartButton } from "@/components/products/AddToCartButton";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -123,12 +124,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
           </div>
 
           {/* Add to Cart */}
-          <button
-            className="w-full py-3 rounded-xl bg-primary text-white font-semibold text-base hover:bg-primary/90 transition-colors disabled:opacity-50"
-            disabled={product.stock === 0}
-          >
-            {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
-          </button>
+          <AddToCartButton productId={product._id} stock={product.stock} />
 
           {/* Attributes / Specs */}
           {Object.keys(product.attributes).length > 0 && (

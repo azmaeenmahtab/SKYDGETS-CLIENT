@@ -1,7 +1,9 @@
 "use client";
 
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, type ReactNode } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useSession, signIn, signOut } from "@/lib/auth-client";
+import { mergeCart } from "@/lib/api/cart";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -35,6 +37,10 @@ const AuthContext = createContext<AuthContextValue>({
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { data: session, isPending } = useSession();
+  const queryClient = useQueryClient();
+
+  // Track previous auth state to detect login transition
+  const prevStatusRef = useRef<AuthStatus>("loading");
 
   const user: AuthUser | null = session?.user
     ? {
@@ -52,16 +58,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     ? "authenticated"
     : "unauthenticated";
 
+  // On login: merge guest cart into user cart, then refetch the ["cart"] query
+  useEffect(() => {
+    const prev = prevStatusRef.current;
+    prevStatusRef.current = status;
+
+    if (prev !== "authenticated" && status === "authenticated") {
+      // Transition from not-authenticated → authenticated
+      // Call merge, then invalidate cart so it refetches the merged result
+      mergeCart()
+        .then(() => {
+          queryClient.invalidateQueries({ queryKey: ["cart"] });
+        })
+        .catch(() => {
+          // Merge failed (e.g. no guest cart exists) — still refetch cart
+          queryClient.invalidateQueries({ queryKey: ["cart"] });
+        });
+    }
+  }, [status, queryClient]);
+
   const value: AuthContextValue = {
     user,
     status,
     login: () => {
-      // Typically the UI handles this via standard redirects to /login, 
-      // but we expose this if components want to trigger it.
       window.location.href = "/login";
     },
     logout: async () => {
       await signOut();
+      // Clear local cart cache on logout
+      queryClient.setQueryData(["cart"], { items: [] });
       window.location.href = "/login";
     },
   };
