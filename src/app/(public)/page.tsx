@@ -230,24 +230,43 @@ export default async function HomePage() {
       </section>
 
       {/* 5. STATS SECTION */}
-      <section className="py-12 bg-primary text-white w-full">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="flex flex-col justify-center items-center">
-              <span className="text-4xl md:text-5xl font-extrabold tracking-tight">{stats.totalProducts}</span>
-              <span className="text-primary-foreground/80 mt-2 text-sm uppercase tracking-wider font-semibold">Active Products Listed</span>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="text-4xl md:text-5xl font-extrabold tracking-tight">{stats.totalCategories}</span>
-              <span className="text-primary-foreground/80 mt-2 text-sm uppercase tracking-wider font-semibold">Supported Categories</span>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="text-4xl md:text-5xl font-extrabold tracking-tight">{stats.totalOrdersFulfilled}</span>
-              <span className="text-primary-foreground/80 mt-2 text-sm uppercase tracking-wider font-semibold">Delivered Orders</span>
-            </div>
-          </div>
-        </div>
-      </section>
+<section className="py-12 w-full bg-white dark:bg-zinc-950 border-y border-zinc-200/80 dark:border-zinc-850">
+  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-zinc-200/60 dark:divide-zinc-800">
+      
+      {/* Stat item 1 */}
+      <div className="flex flex-col justify-center items-center py-4 md:py-2">
+        <span className="text-4xl md:text-5xl font-black tracking-tight text-zinc-950 dark:text-white">
+          {stats.totalProducts}
+        </span>
+        <span className="mt-2 text-xs uppercase tracking-widest font-bold text-zinc-400 dark:text-zinc-500">
+          Active Products Listed
+        </span>
+      </div>
+
+      {/* Stat item 2 */}
+      <div className="flex flex-col justify-center items-center py-4 md:py-2">
+        <span className="text-4xl md:text-5xl font-black tracking-tight text-zinc-950 dark:text-white">
+          {stats.totalCategories}
+        </span>
+        <span className="mt-2 text-xs uppercase tracking-widest font-bold text-zinc-400 dark:text-zinc-500">
+          Supported Categories
+        </span>
+      </div>
+
+      {/* Stat item 3 */}
+      <div className="flex flex-col justify-center items-center py-4 md:py-2">
+        <span className="text-4xl md:text-5xl font-black tracking-tight text-zinc-950 dark:text-white">
+          {stats.totalOrdersFulfilled}
+        </span>
+        <span className="mt-2 text-xs uppercase tracking-widest font-bold text-zinc-400 dark:text-zinc-500">
+          Delivered Orders
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* 6. FAQ SECTION */}
       <section className="py-16 mx-auto max-w-3xl px-4 sm:px-6 w-full">
@@ -315,7 +334,7 @@ export default async function HomePage() {
 
       {/* 7. CTA / NEWSLETTER BANNER */}
       <section className="py-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full mb-12">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-indigo-900 to-zinc-950 py-12 px-6 sm:px-12 md:py-20 md:px-22 shadow-xl border border-white/10 text-center flex flex-col items-center">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-indigo-900 to-zinc-950 py-12 px-6 sm:px-12 md:py-20 md:px-22 shadow-xl text-center flex flex-col items-center">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.2),rgba(255,255,255,0))]" />
           <h2 className="relative z-10 text-3xl font-extrabold text-white sm:text-4xl max-w-xl leading-tight">
             Ready to find your next gadget at half the price?
