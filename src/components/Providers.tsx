@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast"; // 1. Import the global notification 
 import { queryClient } from "@/lib/queryClient";
 import { CartProvider } from "@/contexts/CartDispatchContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 
 /**
  * Providers component — wraps the entire app in all required context providers.
@@ -30,6 +31,8 @@ export function Providers({ children }: { children: ReactNode }) {
             }}
           />
           {children}
+          {/* ChatWidget — mounted here so it persists across all page navigations */}
+          <ChatWidget />
         </CartProvider>
       </AuthProvider>
     </QueryClientProvider>
