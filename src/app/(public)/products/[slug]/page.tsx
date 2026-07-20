@@ -5,6 +5,9 @@ import { formatPrice, formatCondition } from "@/lib/utils";
 import type { Product } from "@/types/product";
 import type { Metadata } from "next";
 import { AddToCartButton } from "@/components/products/AddToCartButton";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { ShoppingCart } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -25,6 +28,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductDetailsPage({ params }: PageProps) {
   const { slug } = await params;
+  const session = await auth.api.getSession({
+    headers: await headers() 
+  });
+
 
   let product: Product;
   try {
@@ -124,7 +131,19 @@ export default async function ProductDetailsPage({ params }: PageProps) {
           </div>
 
           {/* Add to Cart */}
-          <AddToCartButton productId={product._id} stock={product.stock} />
+          {
+            session ? (
+              <AddToCartButton productId={product._id} stock={product.stock} />
+            ) : (
+              <Link
+                href="/login"
+                className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-base flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                Add to Cart
+              </Link>
+            )
+          }
 
           {/* Attributes / Specs */}
           {Object.keys(product.attributes).length > 0 && (
