@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/siteConfig";
-import { Mail, Phone, Instagram, ShieldCheck, Heart } from "lucide-react";
+import { Mail, Phone, ShieldCheck, Heart } from "lucide-react";
 
 export function Footer() {
   return (
@@ -77,7 +77,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-primary transition-colors"
                 >
-                  <Instagram className="w-4 h-4 text-primary" />
+                  <Phone className="w-4 h-4 text-primary" />
                   <span>@{siteConfig.socials.instagram}</span>
                 </a>
               </li>
