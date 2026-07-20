@@ -10,11 +10,15 @@ interface ProductsPageProps {
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const resolvedParams = await searchParams;
 
-  // Build query string
+  // Build query string — categoryPath is single-select, send at most one value
   const query = new URLSearchParams();
   Object.entries(resolvedParams).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== "") {
-      if (Array.isArray(value)) {
+      if (key === "categoryPath") {
+        // Single-select: only take the first value
+        const single = Array.isArray(value) ? value[0] : value;
+        if (single) query.set("categoryPath", single);
+      } else if (Array.isArray(value)) {
         value.forEach((v) => query.append(key, v));
       } else {
         query.append(key, String(value));
@@ -24,7 +28,6 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
   const queryString = query.toString();
 
-  // Server-side fetches (no browser auth — public endpoints)
   const [initialProducts, categories] = await Promise.all([
     serverFetch<GetProductsResponse>(`/products${queryString ? `?${queryString}` : ""}`),
     serverFetch<Category[]>(`/categories`),
@@ -32,10 +35,14 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold tracking-tight mb-2">Explore Products</h1>
-      <p className="text-default-500 mb-6">
-        Find premium resale gadgets, verified and graded for quality.
-      </p>
+      <div className="mb-6">
+        <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
+          Explore Products
+        </h1>
+        <p className="mt-1 text-zinc-500 dark:text-zinc-400">
+          Premium resale gadgets — AI-graded, verified, and ready to ship.
+        </p>
+      </div>
 
       <ProductExplorer categories={categories} initialData={initialProducts} />
     </div>

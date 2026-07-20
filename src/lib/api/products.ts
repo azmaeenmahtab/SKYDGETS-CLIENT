@@ -12,8 +12,12 @@ export async function getProducts(params: Record<string, any> = {}): Promise<Get
   const query = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== "") {
-      if (Array.isArray(value)) {
-        value.forEach((v) => query.append(key, v));
+      if (key === "categoryPath") {
+        // Single-select: only set one value
+        const single = Array.isArray(value) ? value[0] : value;
+        if (single) query.set("categoryPath", String(single));
+      } else if (Array.isArray(value)) {
+        value.forEach((v) => query.append(key, String(v)));
       } else {
         query.append(key, String(value));
       }

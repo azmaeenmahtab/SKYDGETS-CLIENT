@@ -1,11 +1,5 @@
 import LoginIndex from "@/components/Auth/Login/LoginIndex";
 
-const LoginPage = () => {
-  return (
-    <div>
-      <LoginIndex />
-    </div>
-  );
-};
-
-export default LoginPage;
+export default function LoginPage() {
+  return <LoginIndex />;
+}

@@ -17,8 +17,8 @@ interface ProductExplorerProps {
 export function ProductExplorer({ categories, initialData }: ProductExplorerProps) {
   const searchParams = useSearchParams();
 
-  // Convert searchParams to an object/record of queries for fetching
-  const categoryPaths = searchParams.getAll("categoryPath");
+  // categoryPath is single-select — get only one value
+  const categoryPath = searchParams.get("categoryPath") || undefined;
   const conditions = searchParams.getAll("condition");
   const minPrice = searchParams.get("minPrice") || undefined;
   const maxPrice = searchParams.get("maxPrice") || undefined;
@@ -27,7 +27,7 @@ export function ProductExplorer({ categories, initialData }: ProductExplorerProp
   const search = searchParams.get("search") || undefined;
 
   const queryParams = {
-    categoryPath: categoryPaths,
+    categoryPath,
     condition: conditions,
     minPrice,
     maxPrice,
@@ -45,19 +45,27 @@ export function ProductExplorer({ categories, initialData }: ProductExplorerProp
   const productsResponse = data || initialData;
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 py-6">
-      {/* Sidebar - Filters */}
-      <aside className="w-full md:w-1/4 shrink-0">
+    <div className="flex flex-col md:flex-row gap-6">
+      {/* Sidebar */}
+      <aside className="w-full md:w-64 shrink-0">
         <FilterSidebar categories={categories} />
       </aside>
 
-      {/* Main Content Area */}
-      <main className="flex-grow flex flex-col gap-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="text-default-500 text-sm">
-            Showing <span className="font-semibold text-default-800">{productsResponse.items.length}</span> of{" "}
-            <span className="font-semibold text-default-800">{productsResponse.total}</span> products
-          </div>
+      {/* Main Content */}
+      <main className="flex-grow flex flex-col gap-5 min-w-0">
+        {/* Toolbar */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            Showing{" "}
+            <span className="font-semibold text-zinc-900 dark:text-white">
+              {productsResponse.items.length}
+            </span>{" "}
+            of{" "}
+            <span className="font-semibold text-zinc-900 dark:text-white">
+              {productsResponse.total}
+            </span>{" "}
+            products
+          </p>
           <SortDropdown />
         </div>
 
@@ -65,7 +73,12 @@ export function ProductExplorer({ categories, initialData }: ProductExplorerProp
         <ProductGrid products={productsResponse.items} isLoading={isLoading} />
 
         {/* Pagination */}
-        <Pagination page={productsResponse.page} totalPages={productsResponse.totalPages} />
+        {productsResponse.totalPages > 1 && (
+          <Pagination
+            page={productsResponse.page}
+            totalPages={productsResponse.totalPages}
+          />
+        )}
       </main>
     </div>
   );
