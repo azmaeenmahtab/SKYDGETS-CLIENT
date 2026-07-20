@@ -137,7 +137,7 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
                         disabled={isPending}
                         className={`flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-150 ${
                           isSelected
-                            ? "bg-primary text-slate-100 font-semibold shadow-sm shadow-primary/20"
+                            ? "bg-black/20 text-zinc-400 font-semibold shadow-sm shadow-primary/20"
                             : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                         }`}
                       >
