@@ -8,12 +8,7 @@
  */
 export function formatPrice(poisha: number): string {
   const taka = poisha / 100;
-  return new Intl.NumberFormat("bn-BD", {
-    style: "currency",
-    currency: "BDT",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(taka);
+  return `${taka.toLocaleString("en-US")} BDT`;
 }
 
 /**

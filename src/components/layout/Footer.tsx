@@ -1,101 +1,101 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/siteConfig";
-import { Mail, Phone, ShieldCheck, Heart } from "lucide-react";
+import { Mail, Phone, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="w-full mt-auto border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400">
+    <footer className="w-full mt-auto border-t border-zinc-850 bg-zinc-950 text-zinc-400">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Brand Info */}
           <div className="md:col-span-2 flex flex-col gap-3">
-            <Link href="/" className="text-xl font-bold tracking-tight text-zinc-950 dark:text-white flex items-center gap-2">
-              <span className="bg-primary text-white p-1 rounded text-[10px] font-black tracking-widest leading-none">
-                SD
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-white text-zinc-950 font-black text-xs shadow-md">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-3.5 h-3.5"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <span className="text-lg font-black tracking-wider text-white uppercase">
+                {siteConfig.name}
               </span>
-              {siteConfig.name}
             </Link>
-            <p className="text-sm text-zinc-500 max-w-sm leading-relaxed">
-              {siteConfig.tagline} Buy & sell second-hand gadgets with full confidence, verified specs, and certified condition grading.
+            <p className="text-sm text-zinc-500 max-w-sm leading-relaxed font-light mt-1">
+              {siteConfig.tagline} Buy & sell verified secondhand electronics backed by automated AI condition grading and diagnostic assurance.
             </p>
           </div>
 
-          {/* Site Navigation links */}
+          {/* Navigation Links */}
           <div className="flex flex-col gap-3">
-            <h3 className="font-semibold text-zinc-950 dark:text-white text-sm tracking-wider uppercase">Marketplace</h3>
+            <h3 className="font-bold text-white text-xs tracking-widest uppercase font-mono">Marketplace</h3>
             <ul className="flex flex-col gap-2.5 text-sm">
               <li>
-                <Link href="/" className="hover:text-primary transition-colors">
+                <Link href="/" className="hover:text-white transition-colors">
                   Home Page
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-primary transition-colors">
+                <Link href="/products" className="hover:text-white transition-colors">
                   Explore Catalog
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-primary transition-colors">
+                <Link href="/about" className="hover:text-white transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-primary transition-colors">
+                <Link href="/contact" className="hover:text-white transition-colors">
                   Contact Support
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Site Configuration Contact Info */}
+          {/* Contact Information */}
           <div className="flex flex-col gap-3">
-            <h3 className="font-semibold text-zinc-950 dark:text-white text-sm tracking-wider uppercase">Get in Touch</h3>
+            <h3 className="font-bold text-white text-xs tracking-widest uppercase font-mono">Contact Support</h3>
             <ul className="flex flex-col gap-3 text-sm">
               <li>
                 <a 
                   href={`mailto:${siteConfig.contactEmail}`}
-                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-primary" />
+                  <Mail className="w-4 h-4 text-zinc-400" />
                   <span className="truncate max-w-[180px]">{siteConfig.contactEmail}</span>
                 </a>
               </li>
               <li>
                 <a 
                   href={`tel:${siteConfig.contactPhone}`}
-                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-primary" />
+                  <Phone className="w-4 h-4 text-zinc-400" />
                   <span>{siteConfig.contactPhone}</span>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href={`https://instagram.com/${siteConfig.socials.instagram}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-primary transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-primary" />
-                  <span>@{siteConfig.socials.instagram}</span>
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="h-px bg-zinc-200 dark:bg-zinc-850 my-8" />
+        <div className="h-px bg-zinc-850 my-8" />
 
-        {/* Footer bottom */}
+        {/* Footer Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-zinc-500 font-mono">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-xs text-zinc-500">
-            <span>Powered by</span>
-            <ShieldCheck className="w-4 h-4 text-primary" />
-            <span>AI Diagnostics</span>
+          <div className="flex items-center gap-2 text-xs text-zinc-500 font-mono">
+            <ShieldCheck className="w-4 h-4 text-white" />
+            <span>AI Verified Diagnostics Platform</span>
           </div>
         </div>
       </div>
