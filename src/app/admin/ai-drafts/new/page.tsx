@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 import { createDraft } from "@/lib/api/ai-drafts";
 import { apiPost } from "@/lib/api/client";
 import { 
@@ -14,8 +15,10 @@ import {
   X,
   CheckCircle,
   FileText,
-  HelpCircle
+  HelpCircle,
+  AlertCircle
 } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 interface UploadedImage {
   url: string;
@@ -23,10 +26,10 @@ interface UploadedImage {
 }
 
 const STEPS = [
-  { id: "vision", label: "Analyzing images & detecting defects" },
-  { id: "classify", label: "Classifying gadget category & attributes" },
-  { id: "copy", label: "Writing description & title options" },
-  { id: "pricing", label: "Querying market for price ranges" },
+  { id: "vision", label: "Analyzing gadget photos & physical condition" },
+  { id: "classify", label: "Classifying category & extracting attributes" },
+  { id: "copy", label: "Drafting title options & physical condition notes" },
+  { id: "pricing", label: "Evaluating market prices & comparable listings" },
 ];
 
 export default function NewAIDraftPage() {
@@ -51,11 +54,12 @@ export default function NewAIDraftPage() {
     mutationFn: createDraft,
     onSuccess: (draft) => {
       qc.invalidateQueries({ queryKey: ["ai-drafts"] });
-      // Redirect to review page
+      toast.success("AI Pipeline finished!");
       router.push(`/admin/ai-drafts/${draft._id}`);
     },
     onError: (err: any) => {
       setActiveStepIdx(-1);
+      toast.error(err?.message ?? "Pipeline execution failed");
     },
   });
 
@@ -63,7 +67,6 @@ export default function NewAIDraftPage() {
   useEffect(() => {
     if (activeStepIdx === -1) return;
 
-    // Reset step statuses when starting
     if (activeStepIdx === 0) {
       setStepStatuses({
         vision: "running",
@@ -104,7 +107,6 @@ export default function NewAIDraftPage() {
     setUploadError(null);
 
     try {
-      // 1. Get Cloudinary signed signature parameters from the backend
       const signatureData = await apiPost<{
         signature: string;
         timestamp: number;
@@ -114,13 +116,11 @@ export default function NewAIDraftPage() {
       }>("/upload/sign", {});
 
       const { signature, timestamp, folder, apiKey, cloudName } = signatureData;
-
       const uploadedList: UploadedImage[] = [];
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         
-        // 2. Perform direct Cloudinary upload via FormData API
         const formData = new FormData();
         formData.append("file", file);
         formData.append("api_key", apiKey);
@@ -145,9 +145,11 @@ export default function NewAIDraftPage() {
       }
 
       setImages((prev) => [...prev, ...uploadedList]);
+      toast.success(`Uploaded ${uploadedList.length} image(s)`);
     } catch (err: any) {
       console.error(err);
       setUploadError(err.message || "Failed to upload one or more images");
+      toast.error("Upload error occurred");
     } finally {
       setUploading(false);
     }
@@ -168,59 +170,58 @@ export default function NewAIDraftPage() {
     });
   };
 
-  // Render processing overlay/card when pipeline is running
+  // Pipeline processing animation screen
   if (isPending) {
     return (
-      <div className="mx-auto max-w-xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-xl dark:border-zinc-800 dark:bg-zinc-900/50 backdrop-blur-md">
-          <div className="flex flex-col items-center text-center">
-            {/* Pulsing AI Circle */}
-            <div className="relative mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-950/40">
-              <div className="absolute inset-0 animate-ping rounded-full bg-purple-500/10 dark:bg-purple-500/5" />
-              <Sparkles className="h-12 w-12 text-purple-600 dark:text-purple-400 animate-pulse" />
-            </div>
+      <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
+        <div className="rounded-3xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 sm:p-10 shadow-2xl max-w-lg w-full text-center space-y-6">
+          
+          <div className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-purple-500/10">
+            <div className="absolute inset-0 animate-ping rounded-full bg-purple-500/10" />
+            <Sparkles className="h-12 w-12 text-purple-600 dark:text-purple-400 animate-pulse" />
+          </div>
 
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              AI Listing Agent at Work
+          <div>
+            <h2 className="text-2xl font-black text-zinc-950 dark:text-white tracking-tight">
+              Gemini AI Agent Processing
             </h2>
-            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-sm">
-              Please wait while Gemini processes your images and notes to create your optimized listing.
+            <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 max-w-sm mx-auto">
+              Analyzing photo features, detecting physical wear, and querying live market sales data.
             </p>
+          </div>
 
-            {/* Vertical Steps */}
-            <div className="mt-8 w-full max-w-sm text-left flex flex-col gap-5">
-              {STEPS.map((step) => {
-                const status = stepStatuses[step.id];
-                return (
-                  <div key={step.id} className="flex items-center gap-3.5">
-                    {status === "completed" ? (
-                      <CheckCircle className="text-green-500 shrink-0" size={20} />
-                    ) : status === "running" ? (
-                      <Loader2 className="text-purple-600 dark:text-purple-400 animate-spin shrink-0" size={20} />
-                    ) : (
-                      <div className="h-5 w-5 rounded-full border border-zinc-300 dark:border-zinc-700 shrink-0" />
-                    )}
-                    <span
-                      className={`text-sm font-semibold transition-colors duration-300 ${
-                        status === "completed"
-                          ? "text-zinc-500 dark:text-zinc-500 line-through decoration-zinc-300 dark:decoration-zinc-800"
-                          : status === "running"
-                          ? "text-purple-600 dark:text-purple-400 font-bold"
-                          : "text-zinc-400 dark:text-zinc-600"
-                      }`}
-                    >
-                      {step.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+          {/* Steps list */}
+          <div className="w-full max-w-sm mx-auto text-left space-y-4 pt-2 border-t border-zinc-100 dark:border-zinc-800">
+            {STEPS.map((step) => {
+              const status = stepStatuses[step.id];
+              return (
+                <div key={step.id} className="flex items-center gap-3.5">
+                  {status === "completed" ? (
+                    <CheckCircle className="text-emerald-500 shrink-0" size={20} />
+                  ) : status === "running" ? (
+                    <Loader2 className="text-purple-600 dark:text-purple-400 animate-spin shrink-0" size={20} />
+                  ) : (
+                    <div className="h-5 w-5 rounded-full border border-zinc-300 dark:border-zinc-700 shrink-0" />
+                  )}
+                  <span
+                    className={`text-xs font-semibold transition-colors duration-300 ${
+                      status === "completed"
+                        ? "text-zinc-400 dark:text-zinc-500 line-through"
+                        : status === "running"
+                        ? "text-purple-600 dark:text-purple-400 font-bold"
+                        : "text-zinc-400 dark:text-zinc-600"
+                    }`}
+                  >
+                    {step.label}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
 
-            {/* Slow connection hint */}
-            <div className="mt-8 flex items-center gap-2 text-xs text-zinc-400 dark:text-zinc-500">
-              <Loader2 size={12} className="animate-spin" />
-              <span>Analyzing full-resolution image features...</span>
-            </div>
+          <div className="pt-2 flex items-center justify-center gap-2 text-xs text-zinc-400 font-mono">
+            <Loader2 size={14} className="animate-spin" />
+            <span>Parsing image features with Gemini Vision...</span>
           </div>
         </div>
       </div>
@@ -228,139 +229,157 @@ export default function NewAIDraftPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8">
-      {/* Back to Drafts */}
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 mb-6 group transition-colors"
-      >
-        <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
-        Back to review queue
-      </button>
+    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+      {/* Background Spotlight */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
 
-      {/* Title */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white flex items-center gap-2">
-          Create AI Listing Draft
-        </h1>
-        <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-          Upload product images, add optional notes, and let the AI generate everything for you.
-        </p>
-      </div>
+      <div className="relative z-10 mx-auto max-w-4xl px-4 pt-28 sm:pt-36 pb-16 sm:px-6 lg:px-8 w-full space-y-6">
+        
+        {/* Navigation & Title */}
+        <div>
+          <Link
+            href="/admin/ai-drafts"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors mb-3"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to AI Drafts List
+          </Link>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-2">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>AI PIPELINE GENERATOR</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white">
+              Generate AI Listing Draft
+            </h1>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+              Upload multi-angle gadget photos and optional notes to generate complete specifications and market price suggestions.
+            </p>
+          </div>
+        </div>
+
         {pipelineError && (
-          <div className="bg-red-50 border border-red-200 text-red-700 rounded-2xl px-4 py-3.5 text-sm dark:bg-red-950/20 dark:border-red-900/30 dark:text-red-400">
-            <strong>Pipeline failed:</strong> {pipelineError.message || "An error occurred during pipeline execution."}
+          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600 dark:text-red-400">
+            <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <div className="text-sm font-semibold">
+              Pipeline failed: {pipelineError.message || "An error occurred during pipeline execution."}
+            </div>
           </div>
         )}
 
-        {/* Cloudinary Image Upload Section */}
-        <section className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-          <h2 className="text-lg font-bold text-zinc-900 dark:text-white mb-2 flex items-center gap-1.5">
-            <ImageIcon size={20} className="text-purple-500" />
-            Product Images
-          </h2>
-          <p className="text-xs text-zinc-400 dark:text-zinc-500 mb-4">
-            Upload clear photos of the gadget from multiple angles. We recommend at least 1-3 photos.
-          </p>
-
-          {/* Drag & Drop Box */}
-          <div className="relative border-2 border-dashed border-zinc-200 hover:border-purple-500/50 dark:border-zinc-800 dark:hover:border-purple-500/30 rounded-xl p-8 text-center transition-colors">
-            <input
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={handleImageUpload}
-              disabled={uploading}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-            />
-            <div className="flex flex-col items-center gap-2">
-              <div className="p-3 bg-purple-50 dark:bg-purple-950/30 text-purple-600 dark:text-purple-400 rounded-full">
-                {uploading ? (
-                  <Loader2 size={24} className="animate-spin" />
-                ) : (
-                  <Upload size={24} />
-                )}
-              </div>
-              <p className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
-                {uploading ? "Uploading files..." : "Click or drag images here to upload"}
-              </p>
-              <p className="text-xs text-zinc-400 dark:text-zinc-500">
-                Direct signed upload to Cloudinary (PNG, JPG, WebP)
-              </p>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          
+          {/* Photo Upload Section */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-3">
+              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+                <ImageIcon className="w-5 h-5 text-purple-500" />
+                Product Gadget Photos *
+              </h2>
+              <span className="text-xs font-mono text-zinc-400">
+                1–5 photos recommended
+              </span>
             </div>
+
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Upload clear photos showing the front screen, back chassis, sides, and accessories.
+            </p>
+
+            {/* Drag & Drop Upload Zone */}
+            <div className="relative border-2 border-dashed border-zinc-200 hover:border-purple-500/50 dark:border-zinc-800 dark:hover:border-purple-500/40 rounded-2xl p-8 text-center transition-colors bg-zinc-50/50 dark:bg-zinc-950/50">
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleImageUpload}
+                disabled={uploading}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                  {uploading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Upload className="w-6 h-6" />}
+                </div>
+                <p className="text-sm font-bold text-zinc-950 dark:text-white">
+                  {uploading ? "Uploading photos to Cloudinary..." : "Click or drag gadget photos to upload"}
+                </p>
+                <p className="text-xs text-zinc-400">
+                  Signed direct upload (PNG, JPG, WebP)
+                </p>
+              </div>
+            </div>
+
+            {uploadError && (
+              <p className="text-xs text-red-500 font-semibold">{uploadError}</p>
+            )}
+
+            {/* Uploaded Previews */}
+            {images.length > 0 && (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                {images.map((img, idx) => (
+                  <div
+                    key={idx}
+                    className="group relative aspect-square rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-100 dark:bg-zinc-800"
+                  >
+                    <img src={img.url} alt={img.name} className="w-full h-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(idx)}
+                      className="absolute top-2 right-2 p-1.5 bg-black/70 hover:bg-black text-white rounded-full transition-opacity opacity-0 group-hover:opacity-100 cursor-pointer"
+                      title="Remove image"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                    {idx === 0 && (
+                      <span className="absolute bottom-2 left-2 bg-purple-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full shadow">
+                        Primary
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          {uploadError && (
-            <p className="mt-2.5 text-xs text-red-500 font-semibold">{uploadError}</p>
-          )}
+          {/* Seller Notes Section */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
+            <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+              <FileText className="w-5 h-5 text-purple-500" />
+              Optional Hints & Notes
+            </h2>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Provide additional hints such as brand/model, battery health %, warranty, or included accessories.
+            </p>
+            <textarea
+              rows={4}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="e.g. iPhone 14 Pro, 256GB Deep Purple. Battery health 94%. Includes original cable and box. Micro scratch on top bezel."
+              className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all resize-none"
+            />
+          </div>
 
-          {/* Uploaded Previews */}
-          {images.length > 0 && (
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-6">
-              {images.map((img, idx) => (
-                <div
-                  key={idx}
-                  className="group relative aspect-square rounded-xl border border-zinc-200 overflow-hidden dark:border-zinc-800"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={img.url} alt={img.name} className="h-full w-full object-cover" />
-                  <button
-                    type="button"
-                    onClick={() => removeImage(idx)}
-                    className="absolute top-1.5 right-1.5 p-1 bg-black/60 hover:bg-black/80 text-white rounded-full transition-colors opacity-0 group-hover:opacity-100"
-                  >
-                    <X size={14} />
-                  </button>
-                  {idx === 0 && (
-                    <span className="absolute bottom-1.5 left-1.5 bg-purple-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow">
-                      Primary
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
+          {/* Action CTAs */}
+          <div className="flex items-center justify-end gap-4 pt-4">
+            <Link
+              href="/admin/ai-drafts"
+              className="px-8 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white font-bold text-xs uppercase tracking-wider transition-all"
+            >
+              Cancel
+            </Link>
 
-        {/* Optional Seller Notes */}
-        <section className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-          <h2 className="text-lg font-bold text-zinc-900 dark:text-white mb-2 flex items-center gap-1.5">
-            <FileText size={20} className="text-purple-500" />
-            Seller Notes (Optional)
-          </h2>
-          <p className="text-xs text-zinc-400 dark:text-zinc-500 mb-4">
-            Provide hints such as the original brand/model, internal storage, defects, or extra accessories.
-          </p>
-          <textarea
-            rows={4}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            placeholder="e.g. iPhone 12 Pro, 128GB, space gray. Face ID works. Minor surface scratch on the back glass. Battery health 84%."
-            className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-800 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 transition-all resize-none"
-          />
-        </section>
+            <button
+              type="submit"
+              disabled={images.length === 0 || uploading}
+              className="px-8 py-3.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl shadow-purple-600/20 flex items-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Run AI Agent Pipeline</span>
+            </button>
+          </div>
 
-        {/* Action Buttons */}
-        <div className="flex items-center gap-4">
-          <button
-            type="submit"
-            disabled={images.length === 0 || uploading}
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-purple-600/10 hover:bg-purple-500 disabled:opacity-50 transition-all duration-200"
-          >
-            <Sparkles size={16} />
-            Run AI Agent Pipeline
-          </button>
-          <button
-            type="button"
-            onClick={() => router.back()}
-            className="inline-flex justify-center rounded-xl border border-zinc-200 bg-white px-6 py-3.5 text-sm font-semibold text-zinc-600 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
