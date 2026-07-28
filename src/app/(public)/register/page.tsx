@@ -56,7 +56,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-[85vh] p-4 bg-[#fafafa] dark:bg-zinc-950">
+    <div className="flex flex-col justify-center items-center min-h-[85vh] px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 bg-[#fafafa] dark:bg-zinc-950">
       <Card className="w-full max-w-[440px] border border-zinc-200/60 dark:border-zinc-850 bg-white dark:bg-zinc-900 shadow-xl shadow-zinc-200/40 dark:shadow-none rounded-2xl p-4">
         
         {/* Header Block matching login layout */}

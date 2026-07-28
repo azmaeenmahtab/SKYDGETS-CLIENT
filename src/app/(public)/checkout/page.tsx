@@ -8,7 +8,17 @@ import { useAuth } from "@/contexts/AuthContext";
 import { fetchCart } from "@/lib/api/cart";
 import { createOrder } from "@/lib/api/orders";
 import { formatPrice } from "@/lib/utils";
-import { ShieldCheck, Truck, CreditCard, AlertCircle, ShoppingCart, ArrowLeft } from "lucide-react";
+import { 
+  ShieldCheck, 
+  Truck, 
+  CreditCard, 
+  AlertCircle, 
+  ShoppingCart, 
+  ArrowLeft,
+  CheckCircle2,
+  Lock,
+  Sparkles
+} from "lucide-react";
 import type { CreateOrderInput, PaymentMethod } from "@/types/order";
 
 export default function CheckoutPage() {
@@ -111,7 +121,7 @@ export default function CheckoutPage() {
 
   if (isCartLoading) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white flex items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
       </div>
     );
@@ -119,15 +129,17 @@ export default function CheckoutPage() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex flex-col items-center justify-center px-4">
-        <ShoppingCart className="w-16 h-16 text-zinc-600 mb-4 animate-bounce" />
-        <h1 className="text-2xl font-bold mb-2">No items to checkout</h1>
-        <p className="text-zinc-400 mb-6 text-center max-w-sm">
+      <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white flex flex-col items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
+        <div className="w-20 h-20 rounded-3xl bg-violet-500/10 flex items-center justify-center mb-6">
+          <ShoppingCart className="w-10 h-10 text-violet-600 dark:text-violet-400" />
+        </div>
+        <h1 className="text-2xl font-extrabold text-zinc-950 dark:text-white mb-2">No items to checkout</h1>
+        <p className="text-zinc-500 dark:text-zinc-400 mb-6 text-center max-w-sm text-sm leading-relaxed">
           Your cart is empty. Please add products to your cart before proceeding to checkout.
         </p>
         <Link
           href="/products"
-          className="px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-colors"
+          className="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold rounded-full transition-all shadow-lg text-sm uppercase tracking-wider active:scale-95"
         >
           Browse Products
         </Link>
@@ -136,43 +148,48 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white py-10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+      {/* Background Spotlight */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 pt-28 sm:pt-32 pb-16 sm:px-6 lg:px-8 w-full">
         {/* Navigation back */}
         <div className="mb-8">
           <Link
             href="/cart"
-            className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Cart
           </Link>
-          <h1 className="text-3xl font-extrabold tracking-tight mt-3">Checkout</h1>
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white mt-3">
+            Checkout & Fulfillment
+          </h1>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-            <div className="text-sm text-red-400 font-medium">{error}</div>
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600 dark:text-red-400">
+            <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <div className="text-sm font-semibold">{error}</div>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Info */}
           <div className="lg:col-span-7 space-y-6">
             {/* 1. Contact Information for Guests */}
             {authStatus !== "authenticated" && (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
-                <h2 className="text-xl font-bold flex items-center gap-2 text-violet-400">
+              <div className="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 space-y-4 shadow-sm">
+                <h2 className="text-xl font-bold flex items-center gap-2 text-violet-600 dark:text-violet-400">
                   <ShieldCheck className="w-5 h-5" />
                   Contact Information
                 </h2>
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
                   You are checking out as a guest. Please provide contact details for updates.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                       Contact Name *
                     </label>
                     <input
@@ -181,11 +198,11 @@ export default function CheckoutPage() {
                       value={guestName}
                       onChange={(e) => setGuestName(e.target.value)}
                       placeholder="e.g. John Doe"
-                      className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                      className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                       Contact Phone *
                     </label>
                     <input
@@ -194,12 +211,12 @@ export default function CheckoutPage() {
                       value={guestPhone}
                       onChange={(e) => setGuestPhone(e.target.value)}
                       placeholder="e.g. +8801700000000"
-                      className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                      className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                     Email Address (Optional)
                   </label>
                   <input
@@ -207,22 +224,22 @@ export default function CheckoutPage() {
                     value={guestEmail}
                     onChange={(e) => setGuestEmail(e.target.value)}
                     placeholder="e.g. john@example.com"
-                    className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                   />
                 </div>
               </div>
             )}
 
             {/* 2. Shipping Address */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
-              <h2 className="text-xl font-bold flex items-center gap-2 text-violet-400">
+            <div className="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 space-y-4 shadow-sm">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-violet-600 dark:text-violet-400">
                 <Truck className="w-5 h-5" />
                 Shipping Address
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                     Recipient Full Name *
                   </label>
                   <input
@@ -231,11 +248,11 @@ export default function CheckoutPage() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Recipient's name"
-                    className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                     Phone Number *
                   </label>
                   <input
@@ -244,14 +261,14 @@ export default function CheckoutPage() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="e.g. 01712345678"
-                    className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                     Division *
                   </label>
                   <input
@@ -260,11 +277,11 @@ export default function CheckoutPage() {
                     value={division}
                     onChange={(e) => setDivision(e.target.value)}
                     placeholder="e.g. Dhaka"
-                    className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
                     District *
                   </label>
                   <input
@@ -273,159 +290,166 @@ export default function CheckoutPage() {
                     value={district}
                     onChange={(e) => setDistrict(e.target.value)}
                     placeholder="e.g. Dhaka"
-                    className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                    className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
-                    Area *
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                    Area/Thana *
                   </label>
                   <input
                     type="text"
                     required
                     value={area}
                     onChange={(e) => setArea(e.target.value)}
-                    placeholder="e.g. Dhanmondi"
-                    className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors"
+                    placeholder="e.g. Gulshan"
+                    className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-zinc-400 mb-1.5 uppercase tracking-wider">
-                  Address Line *
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                  Street Address & House/Flat No. *
                 </label>
                 <textarea
                   required
-                  rows={3}
+                  rows={2}
                   value={addressLine}
                   onChange={(e) => setAddressLine(e.target.value)}
                   placeholder="e.g. House 12, Road 5, Block B"
-                  className="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500 transition-colors resize-none"
+                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all resize-none"
                 />
               </div>
             </div>
 
             {/* 3. Payment Method */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
-              <h2 className="text-xl font-bold flex items-center gap-2 text-violet-400">
+            <div className="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 space-y-4 shadow-sm">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-violet-600 dark:text-violet-400">
                 <CreditCard className="w-5 h-5" />
                 Payment Method
               </h2>
 
-              <div className="space-y-3">
-                {/* COD */}
-                <label className="flex items-center gap-4 p-4 rounded-xl border border-violet-500/30 bg-violet-500/5 cursor-pointer hover:bg-violet-500/10 transition-colors">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label
+                  onClick={() => setPaymentMethod("cod")}
+                  className={`flex items-start gap-3 p-4 rounded-2xl border cursor-pointer transition-all ${
+                    paymentMethod === "cod"
+                      ? "border-violet-600 bg-violet-500/5 text-violet-600 dark:text-violet-400 font-semibold"
+                      : "border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700"
+                  }`}
+                >
                   <input
                     type="radio"
                     name="paymentMethod"
                     value="cod"
                     checked={paymentMethod === "cod"}
                     onChange={() => setPaymentMethod("cod")}
-                    className="w-4 h-4 text-violet-600 focus:ring-violet-500 border-zinc-700 bg-zinc-800"
+                    className="mt-1"
                   />
                   <div>
-                    <p className="font-semibold text-white">Cash on Delivery (COD)</p>
-                    <p className="text-xs text-zinc-400">Pay with cash upon delivery of your items.</p>
+                    <span className="block text-sm font-bold text-zinc-900 dark:text-white">Cash on Delivery</span>
+                    <span className="block text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                      Pay in cash when your verified gadget is delivered to your doorstep.
+                    </span>
                   </div>
                 </label>
 
-                {/* bKash */}
-                <div className="flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/5 opacity-50 cursor-not-allowed">
-                  <div className="flex items-center gap-4">
-                    <input
-                      type="radio"
-                      disabled
-                      name="paymentMethod"
-                      value="bkash"
-                      className="w-4 h-4 text-violet-600 border-zinc-700 bg-zinc-800"
-                    />
-                    <div>
-                      <p className="font-semibold text-white">bKash</p>
-                      <p className="text-xs text-zinc-400">Pay directly using your bKash wallet.</p>
-                    </div>
+                <label
+                  onClick={() => setPaymentMethod("card")}
+                  className={`flex items-start gap-3 p-4 rounded-2xl border cursor-pointer transition-all ${
+                    paymentMethod === "card"
+                      ? "border-violet-600 bg-violet-500/5 text-violet-600 dark:text-violet-400 font-semibold"
+                      : "border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="card"
+                    checked={paymentMethod === "card"}
+                    onChange={() => setPaymentMethod("card")}
+                    className="mt-1"
+                  />
+                  <div>
+                    <span className="block text-sm font-bold text-zinc-900 dark:text-white">Card / Mobile Banking</span>
+                    <span className="block text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                      Pay securely via bKash, Nagad, Visa, or Mastercard.
+                    </span>
                   </div>
-                  <span className="text-xs px-2 py-1 bg-zinc-800 rounded-md font-semibold text-zinc-400">
-                    Coming Soon
-                  </span>
-                </div>
-
-                {/* Nagad */}
-                <div className="flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/5 opacity-50 cursor-not-allowed">
-                  <div className="flex items-center gap-4">
-                    <input
-                      type="radio"
-                      disabled
-                      name="paymentMethod"
-                      value="nagad"
-                      className="w-4 h-4 text-violet-600 border-zinc-700 bg-zinc-800"
-                    />
-                    <div>
-                      <p className="font-semibold text-white">Nagad</p>
-                      <p className="text-xs text-zinc-400">Pay directly using your Nagad wallet.</p>
-                    </div>
-                  </div>
-                  <span className="text-xs px-2 py-1 bg-zinc-800 rounded-md font-semibold text-zinc-400">
-                    Coming Soon
-                  </span>
-                </div>
+                </label>
               </div>
             </div>
           </div>
 
-          {/* Sidebar Summary */}
+          {/* Right Side: Order Summary */}
           <div className="lg:col-span-5">
-            <div className="sticky top-6 bg-white/5 border border-white/10 rounded-2xl p-6 space-y-6">
-              <h3 className="font-bold text-lg text-white">Order Summary</h3>
+            <div className="sticky top-28 bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 space-y-6 shadow-xl shadow-black/5">
+              <h2 className="text-xl font-extrabold text-zinc-950 dark:text-white tracking-tight">
+                Order Review
+              </h2>
 
-              {/* Items */}
-              <div className="divide-y divide-white/10 max-h-64 overflow-y-auto pr-1">
+              <div className="space-y-3 max-h-60 overflow-y-auto pr-1">
                 {cartItems.map((item) => (
-                  <div key={item.productId} className="py-3 flex justify-between gap-4 text-sm">
-                    <div className="min-w-0">
-                      <p className="font-semibold text-white truncate">{item.title}</p>
-                      <p className="text-xs text-zinc-400 capitalize">
-                        Qty: {item.quantity} · {item.condition.replace(/_/g, " ")}
+                  <div
+                    key={item.productId}
+                    className="flex justify-between items-center text-sm pb-3 border-b border-zinc-100 dark:border-zinc-800/60"
+                  >
+                    <div className="min-w-0 pr-2">
+                      <p className="font-bold text-zinc-900 dark:text-white text-xs truncate">
+                        {item.title}
+                      </p>
+                      <p className="text-[11px] text-zinc-500 dark:text-zinc-400 capitalize">
+                        Qty: {item.quantity} • {item.condition.replace(/_/g, " ")}
                       </p>
                     </div>
-                    <span className="font-bold text-white whitespace-nowrap">
+                    <span className="font-bold text-zinc-950 dark:text-white text-xs flex-shrink-0">
                       {formatPrice(item.priceAtAdd * item.quantity)}
                     </span>
                   </div>
                 ))}
               </div>
 
-              {/* Totals */}
-              <div className="border-t border-white/10 pt-4 space-y-2 text-sm">
-                <div className="flex justify-between text-zinc-400">
+              <div className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400 pt-1">
+                <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span className="font-medium text-white">{formatPrice(subtotal)}</span>
+                  <span className="font-bold text-zinc-900 dark:text-white">{formatPrice(subtotal)}</span>
                 </div>
-                <div className="flex justify-between text-zinc-400">
+                <div className="flex justify-between">
                   <span>Shipping Fee</span>
-                  <span className="text-emerald-400 font-semibold">Free</span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Free</span>
                 </div>
-                <div className="border-t border-white/10 pt-3 flex justify-between font-extrabold text-lg text-white">
+                <div className="flex justify-between text-base font-black text-zinc-950 dark:text-white pt-2 border-t border-zinc-100 dark:border-zinc-800">
                   <span>Total</span>
                   <span>{formatPrice(total)}</span>
                 </div>
               </div>
 
-              {/* Checkout Button */}
               <button
                 type="submit"
                 disabled={checkoutMutation.isPending}
-                className="w-full py-4 bg-violet-600 hover:bg-violet-500 disabled:bg-violet-600/50 text-white font-extrabold rounded-xl transition-colors shadow-lg shadow-violet-600/20 flex items-center justify-center gap-2"
+                className="w-full py-4 bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold rounded-full transition-all shadow-xl text-sm uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50"
               >
                 {checkoutMutation.isPending ? (
-                  <>
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    Processing Order...
-                  </>
+                  <span>Processing Order...</span>
                 ) : (
-                  "Place Order (COD)"
+                  <>
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Place Order ({formatPrice(total)})</span>
+                  </>
                 )}
               </button>
+
+              <div className="space-y-2 text-xs text-zinc-500 dark:text-zinc-400 pt-2 border-t border-zinc-100 dark:border-zinc-800/60">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Encrypted 256-bit Secure Checkout</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 text-purple-500 flex-shrink-0" />
+                  <span>Insured Express Shipping Included</span>
+                </div>
+              </div>
             </div>
           </div>
         </form>

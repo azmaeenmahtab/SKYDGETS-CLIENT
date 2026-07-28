@@ -171,7 +171,7 @@ export default function NewAIDraftPage() {
   // Render processing overlay/card when pipeline is running
   if (isPending) {
     return (
-      <div className="mx-auto max-w-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-xl dark:border-zinc-800 dark:bg-zinc-900/50 backdrop-blur-md">
           <div className="flex flex-col items-center text-center">
             {/* Pulsing AI Circle */}
@@ -228,7 +228,7 @@ export default function NewAIDraftPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-3xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8">
       {/* Back to Drafts */}
       <button
         onClick={() => router.back()}

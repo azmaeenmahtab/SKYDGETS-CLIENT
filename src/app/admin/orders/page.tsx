@@ -69,32 +69,38 @@ export default function AdminOrdersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white py-10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+      {/* Background Spotlight */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-28 sm:pt-32 pb-16 sm:px-6 lg:px-8 w-full">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight flex items-center gap-3">
-              <ClipboardList className="w-8 h-8 text-violet-400" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20 mb-3">
+              <ClipboardList className="w-3.5 h-3.5" />
+              <span>ADMIN CONTROL</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white">
               Manage Orders
             </h1>
-            <p className="text-sm text-zinc-400 mt-2">
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
               Update status, view history, and process order fulfillment.
             </p>
           </div>
           <button
             onClick={() => refetch()}
-            className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/15 text-white text-sm font-semibold rounded-xl transition-colors self-start sm:self-center"
+            className="flex items-center gap-2 px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white text-xs font-bold rounded-full transition-all self-start sm:self-center cursor-pointer active:scale-95 border border-zinc-200/80 dark:border-zinc-800"
           >
             <RefreshCw className="w-4 h-4" />
-            Refresh
+            <span>Refresh Orders</span>
           </button>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-            <div className="text-sm text-red-400 font-medium">{error}</div>
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600 dark:text-red-400">
+            <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <div className="text-sm font-semibold">{error}</div>
           </div>
         )}
 
@@ -104,7 +110,7 @@ export default function AdminOrdersPage() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-24 rounded-2xl bg-white/5 animate-pulse border border-white/5"
+                className="h-28 rounded-3xl bg-zinc-100 dark:bg-zinc-900 animate-pulse border border-zinc-200/60 dark:border-zinc-800"
               />
             ))}
           </div>
@@ -112,10 +118,10 @@ export default function AdminOrdersPage() {
 
         {/* Empty state */}
         {!isLoading && (!orders || orders.length === 0) && (
-          <div className="text-center py-20 bg-white/5 border border-white/10 rounded-2xl">
-            <ClipboardList className="w-12 h-12 text-zinc-600 mx-auto mb-4" />
-            <h2 className="text-lg font-bold text-white mb-1">No orders found</h2>
-            <p className="text-sm text-zinc-400">There are no orders placed in the system yet.</p>
+          <div className="text-center py-20 bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-8 shadow-sm">
+            <ClipboardList className="w-12 h-12 text-zinc-400 dark:text-zinc-500 mx-auto mb-4" />
+            <h2 className="text-xl font-bold text-zinc-950 dark:text-white mb-1">No orders found</h2>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">There are no orders placed in the system yet.</p>
           </div>
         )}
 
@@ -130,7 +136,7 @@ export default function AdminOrdersPage() {
               return (
                 <div
                   key={order._id}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-all duration-200"
+                  className="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-200 shadow-sm"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     {/* Order Details */}

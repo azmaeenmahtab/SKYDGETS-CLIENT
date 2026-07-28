@@ -199,7 +199,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
 
   if (error || !draft) {
     return (
-      <div className="mx-auto max-w-2xl px-4 py-16 text-center">
+      <div className="mx-auto max-w-2xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 text-center">
         <AlertCircle size={48} className="mx-auto text-red-500 mb-2" />
         <h3 className="text-lg font-bold text-zinc-950 dark:text-white">Draft not found</h3>
         <button onClick={() => router.back()} className="mt-4 text-purple-600 hover:underline">
@@ -212,7 +212,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
   // Handle Loading/Processing Status
   if (draft.status === "processing") {
     return (
-      <div className="mx-auto max-w-md px-4 py-16 text-center">
+      <div className="mx-auto max-w-md px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 text-center">
         <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-xl dark:border-zinc-800 dark:bg-zinc-900">
           <Loader2 size={40} className="animate-spin text-purple-600 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-zinc-900 dark:text-white">Processing Draft...</h2>
@@ -231,7 +231,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8">
       {/* Back Button */}
       <button
         onClick={() => router.push("/admin/ai-drafts")}

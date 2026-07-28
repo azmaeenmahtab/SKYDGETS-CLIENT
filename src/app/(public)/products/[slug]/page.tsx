@@ -53,7 +53,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
   const conditionClass = conditionColorMap[product.condition] ?? "bg-default-100 text-default-700";
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <nav className="text-sm text-default-400 mb-6 flex items-center gap-2">
         <Link href="/products" className="hover:text-primary transition-colors">

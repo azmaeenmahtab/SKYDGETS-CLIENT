@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, Home, ShoppingBag, Truck } from "lucide-react";
+import { CheckCircle2, ArrowRight, Home, ShoppingBag, Truck, ShieldCheck, Sparkles } from "lucide-react";
 import { getOrderByNumber } from "@/lib/api/orders";
 import { formatPrice } from "@/lib/utils";
 
@@ -19,7 +19,7 @@ export default function OrderConfirmationPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white flex items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-violet-500 border-t-transparent" />
       </div>
     );
@@ -27,12 +27,14 @@ export default function OrderConfirmationPage() {
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex flex-col items-center justify-center px-4">
-        <h1 className="text-2xl font-bold mb-2">Order Not Found</h1>
-        <p className="text-zinc-400 mb-6">We couldn't retrieve the details for order {orderNumber}.</p>
+      <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white flex flex-col items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
+        <h1 className="text-2xl font-extrabold mb-2">Order Not Found</h1>
+        <p className="text-zinc-500 dark:text-zinc-400 mb-6 text-center max-w-sm text-sm">
+          We couldn't retrieve the details for order {orderNumber}.
+        </p>
         <Link
           href="/products"
-          className="px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-colors"
+          className="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold rounded-full transition-all shadow-lg text-sm uppercase tracking-wider active:scale-95"
         >
           Browse Products
         </Link>
@@ -41,45 +43,48 @@ export default function OrderConfirmationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white py-12">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+      {/* Background Spotlight */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.08),rgba(255,255,255,0))]" />
+
+      <div className="relative z-10 mx-auto max-w-3xl px-4 pt-28 sm:pt-32 pb-16 sm:px-6 lg:px-8 flex flex-col items-center w-full">
         {/* Success Icon */}
         <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mb-6 animate-pulse">
-          <CheckCircle2 className="w-12 h-12 text-emerald-400" />
+          <CheckCircle2 className="w-12 h-12 text-emerald-600 dark:text-emerald-400" />
         </div>
 
         {/* Headings */}
-        <h1 className="text-3xl font-extrabold tracking-tight text-center mb-2">
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-center text-zinc-950 dark:text-white mb-2">
           Order Placed Successfully!
         </h1>
-        <p className="text-zinc-400 text-center mb-8 max-w-md">
+        <p className="text-zinc-600 dark:text-zinc-400 text-center mb-8 max-w-md text-sm sm:text-base">
           Thank you for your purchase. Your order number is{" "}
-          <span className="text-white font-bold tracking-wider">{order.orderNumber}</span>.
+          <span className="text-zinc-950 dark:text-white font-extrabold tracking-wider">{order.orderNumber}</span>.
         </p>
 
         {/* Order Details Card */}
-        <div className="w-full bg-white/5 border border-white/10 rounded-2xl p-6 space-y-6 mb-8">
-          <div className="flex justify-between items-center border-b border-white/10 pb-4">
-            <span className="text-sm font-semibold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
-              <Truck className="w-4 h-4 text-violet-400" />
+        <div className="w-full bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-6 mb-8 shadow-xl shadow-black/5">
+          <div className="flex justify-between items-center border-b border-zinc-100 dark:border-zinc-800 pb-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 flex items-center gap-2">
+              <Truck className="w-4 h-4 text-violet-600 dark:text-violet-400" />
               Delivery Status
             </span>
-            <span className="px-3 py-1 bg-violet-500/10 border border-violet-500/20 text-violet-400 rounded-full text-xs font-semibold capitalize">
+            <span className="px-3.5 py-1 bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 rounded-full text-xs font-bold uppercase tracking-wider">
               {order.orderStatus}
             </span>
           </div>
 
           {/* Items List */}
-          <div className="divide-y divide-white/5">
+          <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
             {order.items.map((item) => (
               <div key={item.productId} className="py-3 flex justify-between gap-4 text-sm">
                 <div>
-                  <p className="font-semibold text-white">{item.titleSnapshot}</p>
-                  <p className="text-xs text-zinc-400 capitalize">
+                  <p className="font-extrabold text-zinc-950 dark:text-white">{item.titleSnapshot}</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 capitalize mt-0.5">
                     Qty: {item.quantity} · {item.condition.replace(/_/g, " ")}
                   </p>
                 </div>
-                <span className="font-bold text-white">
+                <span className="font-bold text-zinc-950 dark:text-white">
                   {formatPrice(item.priceSnapshot * item.quantity)}
                 </span>
               </div>
@@ -87,7 +92,7 @@ export default function OrderConfirmationPage() {
           </div>
 
           {/* Totals */}
-          <div className="border-t border-white/10 pt-4 flex justify-between font-extrabold text-lg text-white">
+          <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4 flex justify-between font-black text-xl text-zinc-950 dark:text-white">
             <span>Total Paid (COD)</span>
             <span>{formatPrice(order.total)}</span>
           </div>
@@ -97,18 +102,18 @@ export default function OrderConfirmationPage() {
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
           <Link
             href={`/orders/${order.orderNumber}`}
-            className="px-6 py-3.5 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-xl text-center transition-colors flex items-center justify-center gap-2"
+            className="px-8 py-3.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white font-bold rounded-full text-center transition-all flex items-center justify-center gap-2 text-sm active:scale-95"
           >
             <ShoppingBag className="w-4 h-4" />
-            Track Order Details
+            <span>Track Order Details</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/products"
-            className="px-6 py-3.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl text-center transition-colors flex items-center justify-center gap-2 shadow-lg shadow-violet-600/10"
+            className="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold rounded-full text-center transition-all flex items-center justify-center gap-2 shadow-lg text-sm uppercase tracking-wider active:scale-95"
           >
             <Home className="w-4 h-4" />
-            Continue Shopping
+            <span>Continue Shopping</span>
           </Link>
         </div>
       </div>
