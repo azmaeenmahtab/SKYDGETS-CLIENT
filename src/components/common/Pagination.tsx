@@ -37,9 +37,9 @@ export function Pagination({ page, totalPages }: PaginationProps) {
         Previous
       </Button>
 
-      <span className="text-sm text-default-500">
-        Page <span className="font-semibold text-default-800">{page}</span> of{" "}
-        <span className="font-semibold text-default-800">{totalPages}</span>
+      <span className="text-sm text-zinc-500 font-medium">
+        Page <span className="font-bold text-zinc-950">{page}</span> of{" "}
+        <span className="font-bold text-zinc-950">{totalPages}</span>
       </span>
 
       <Button

@@ -173,25 +173,25 @@ export default function NewAIDraftPage() {
   // Pipeline processing animation screen
   if (isPending) {
     return (
-      <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
-        <div className="rounded-3xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 sm:p-10 shadow-2xl max-w-lg w-full text-center space-y-6">
+      <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900 items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
+        <div className="rounded-3xl border border-zinc-200/80 bg-white p-8 sm:p-10 shadow-2xl max-w-lg w-full text-center space-y-6">
           
           <div className="relative mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-purple-500/10">
             <div className="absolute inset-0 animate-ping rounded-full bg-purple-500/10" />
-            <Sparkles className="h-12 w-12 text-purple-600 dark:text-purple-400 animate-pulse" />
+            <Sparkles className="h-12 w-12 text-purple-600 animate-pulse" />
           </div>
 
           <div>
-            <h2 className="text-2xl font-black text-zinc-950 dark:text-white tracking-tight">
+            <h2 className="text-2xl font-black text-zinc-950 tracking-tight">
               Gemini AI Agent Processing
             </h2>
-            <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 max-w-sm mx-auto">
+            <p className="mt-2 text-xs text-zinc-500 max-w-sm mx-auto">
               Analyzing photo features, detecting physical wear, and querying live market sales data.
             </p>
           </div>
 
           {/* Steps list */}
-          <div className="w-full max-w-sm mx-auto text-left space-y-4 pt-2 border-t border-zinc-100 dark:border-zinc-800">
+          <div className="w-full max-w-sm mx-auto text-left space-y-4 pt-2 border-t border-zinc-100">
             {STEPS.map((step) => {
               const status = stepStatuses[step.id];
               return (
@@ -199,17 +199,17 @@ export default function NewAIDraftPage() {
                   {status === "completed" ? (
                     <CheckCircle className="text-emerald-500 shrink-0" size={20} />
                   ) : status === "running" ? (
-                    <Loader2 className="text-purple-600 dark:text-purple-400 animate-spin shrink-0" size={20} />
+                    <Loader2 className="text-purple-600 animate-spin shrink-0" size={20} />
                   ) : (
-                    <div className="h-5 w-5 rounded-full border border-zinc-300 dark:border-zinc-700 shrink-0" />
+                    <div className="h-5 w-5 rounded-full border border-zinc-300 shrink-0" />
                   )}
                   <span
                     className={`text-xs font-semibold transition-colors duration-300 ${
                       status === "completed"
-                        ? "text-zinc-400 dark:text-zinc-500 line-through"
+                        ? "text-zinc-400 line-through"
                         : status === "running"
-                        ? "text-purple-600 dark:text-purple-400 font-bold"
-                        : "text-zinc-400 dark:text-zinc-600"
+                        ? "text-purple-600 font-bold"
+                        : "text-zinc-400"
                     }`}
                   >
                     {step.label}
@@ -229,7 +229,7 @@ export default function NewAIDraftPage() {
   }
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
       {/* Background Spotlight */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
 
@@ -239,28 +239,28 @@ export default function NewAIDraftPage() {
         <div>
           <Link
             href="/admin/ai-drafts"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors mb-3"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 transition-colors mb-3"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to AI Drafts List
           </Link>
 
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 border border-purple-500/20 mb-2">
               <Sparkles className="w-3.5 h-3.5" />
               <span>AI PIPELINE GENERATOR</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white">
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950">
               Generate AI Listing Draft
             </h1>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            <p className="text-sm text-zinc-500 mt-1">
               Upload multi-angle gadget photos and optional notes to generate complete specifications and market price suggestions.
             </p>
           </div>
         </div>
 
         {pipelineError && (
-          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600 dark:text-red-400">
+          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600">
             <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
             <div className="text-sm font-semibold">
               Pipeline failed: {pipelineError.message || "An error occurred during pipeline execution."}
@@ -271,9 +271,9 @@ export default function NewAIDraftPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           
           {/* Photo Upload Section */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-3">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+          <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <ImageIcon className="w-5 h-5 text-purple-500" />
                 Product Gadget Photos *
               </h2>
@@ -282,12 +282,12 @@ export default function NewAIDraftPage() {
               </span>
             </div>
 
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+            <p className="text-xs text-zinc-500">
               Upload clear photos showing the front screen, back chassis, sides, and accessories.
             </p>
 
             {/* Drag & Drop Upload Zone */}
-            <div className="relative border-2 border-dashed border-zinc-200 hover:border-purple-500/50 dark:border-zinc-800 dark:hover:border-purple-500/40 rounded-2xl p-8 text-center transition-colors bg-zinc-50/50 dark:bg-zinc-950/50">
+            <div className="relative border-2 border-dashed border-zinc-200 hover:border-purple-500/50 rounded-2xl p-8 text-center transition-colors bg-zinc-50/50">
               <input
                 type="file"
                 multiple
@@ -297,10 +297,10 @@ export default function NewAIDraftPage() {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
               <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center">
                   {uploading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Upload className="w-6 h-6" />}
                 </div>
-                <p className="text-sm font-bold text-zinc-950 dark:text-white">
+                <p className="text-sm font-bold text-zinc-950">
                   {uploading ? "Uploading photos to Cloudinary..." : "Click or drag gadget photos to upload"}
                 </p>
                 <p className="text-xs text-zinc-400">
@@ -319,7 +319,7 @@ export default function NewAIDraftPage() {
                 {images.map((img, idx) => (
                   <div
                     key={idx}
-                    className="group relative aspect-square rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-100 dark:bg-zinc-800"
+                    className="group relative aspect-square rounded-2xl border border-zinc-200 overflow-hidden bg-zinc-100"
                   >
                     <img src={img.url} alt={img.name} className="w-full h-full object-cover" />
                     <button
@@ -342,12 +342,12 @@ export default function NewAIDraftPage() {
           </div>
 
           {/* Seller Notes Section */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
-            <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+          <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-4">
+            <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
               <FileText className="w-5 h-5 text-purple-500" />
               Optional Hints & Notes
             </h2>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+            <p className="text-xs text-zinc-500">
               Provide additional hints such as brand/model, battery health %, warranty, or included accessories.
             </p>
             <textarea
@@ -355,7 +355,7 @@ export default function NewAIDraftPage() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. iPhone 14 Pro, 256GB Deep Purple. Battery health 94%. Includes original cable and box. Micro scratch on top bezel."
-              className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all resize-none"
+              className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all resize-none font-medium"
             />
           </div>
 
@@ -363,7 +363,7 @@ export default function NewAIDraftPage() {
           <div className="flex items-center justify-end gap-4 pt-4">
             <Link
               href="/admin/ai-drafts"
-              className="px-8 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white font-bold text-xs uppercase tracking-wider transition-all"
+              className="px-8 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-bold text-xs uppercase tracking-wider transition-all"
             >
               Cancel
             </Link>

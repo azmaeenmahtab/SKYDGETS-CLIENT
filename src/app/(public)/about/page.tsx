@@ -78,23 +78,23 @@ const STEPS = [
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
       
       {/* HERO SECTION */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 md:pb-24 overflow-hidden border-b border-zinc-200/80 dark:border-zinc-800 bg-gradient-to-b from-zinc-50/80 via-white to-white dark:from-zinc-900/60 dark:via-zinc-950 dark:to-zinc-950">
+      <section className="relative w-full pt-28 sm:pt-36 pb-16 md:pb-24 overflow-hidden border-b border-zinc-200/80 bg-gradient-to-b from-zinc-50/80 via-white to-white">
         {/* Background Grid Spotlight */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.08),rgba(255,255,255,0))]" />
-        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35" />
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35" />
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           {/* Tag Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 shadow-sm mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 border border-purple-500/20 shadow-sm mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-purple-600" />
             <span>REDEFINING SECONDHAND TECH</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-zinc-950 dark:text-white leading-[1.08] max-w-4xl">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-zinc-950 leading-[1.08] max-w-4xl">
             Verified Hardware. <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-500">
               Zero Guesswork.
@@ -102,7 +102,7 @@ export default function AboutPage() {
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl font-normal leading-relaxed">
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-600 max-w-2xl font-normal leading-relaxed">
             SKYDGETS is the premier resale marketplace engineered with automated AI visual grading and multi-point hardware evaluation to make buying and selling pre-owned gadgets effortless and transparent.
           </p>
 
@@ -110,14 +110,14 @@ export default function AboutPage() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Link
               href="/products"
-              className="inline-flex items-center justify-center bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold px-8 py-3.5 rounded-full transition-all duration-300 shadow-xl shadow-black/10 gap-2 text-sm uppercase tracking-wider active:scale-95"
+              className="inline-flex items-center justify-center bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold px-8 py-3.5 rounded-full transition-all duration-300 shadow-xl shadow-black/10 gap-2 text-sm uppercase tracking-wider active:scale-95"
             >
               <span>Explore Catalog</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white font-bold px-8 py-3.5 rounded-full border border-zinc-200 dark:border-zinc-800 transition-all text-sm active:scale-95"
+              className="inline-flex items-center justify-center bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-bold px-8 py-3.5 rounded-full border border-zinc-200 transition-all text-sm active:scale-95"
             >
               <span>Contact Support</span>
             </Link>

@@ -48,7 +48,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center px-4 pt-28 sm:pt-32 pb-12 sm:pb-16">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 text-zinc-900">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -57,26 +57,26 @@ export default function LoginPage() {
 
       <div className="relative w-full max-w-md">
         {/* Card */}
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-xl border border-zinc-200/80 overflow-hidden">
           {/* Top gradient bar */}
-          <div className="h-1 bg-gradient-to-r from-primary via-indigo-500 to-violet-500" />
+          <div className="h-1 bg-gradient-to-r from-zinc-900 via-indigo-500 to-violet-500" />
 
           <div className="px-8 py-8">
             {/* Logo + Heading */}
             <div className="text-center mb-7">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-xl font-black tracking-tight text-zinc-900 dark:text-white mb-4"
+                className="inline-flex items-center gap-2 text-xl font-black tracking-tight text-zinc-950 mb-4"
               >
-                <span className="bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 px-2 py-1 rounded-lg text-xs font-black tracking-widest">
+                <span className="bg-zinc-950 text-white px-2 py-1 rounded-lg text-xs font-black tracking-widest">
                   SD
                 </span>
                 SKYDGETS
               </Link>
-              <h1 className="text-2xl font-extrabold text-zinc-900 dark:text-white">
+              <h1 className="text-2xl font-extrabold text-zinc-950">
                 Welcome back
               </h1>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="mt-1 text-sm text-zinc-500">
                 Sign in to your account to continue
               </p>
             </div>
@@ -85,27 +85,27 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={fillDemo}
-              className="w-full flex items-center gap-3 bg-primary/8 hover:bg-primary/12 border border-primary/20 rounded-xl px-4 py-3 mb-6 transition-all group text-left"
+              className="w-full flex items-center gap-3 bg-zinc-100 hover:bg-zinc-200/70 border border-zinc-200 rounded-xl px-4 py-3 mb-6 transition-all group text-left cursor-pointer"
             >
-              <span className="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center flex-shrink-0">
-                <Sparkles className="w-4 h-4 text-primary" />
+              <span className="w-8 h-8 rounded-lg bg-zinc-950 text-white flex items-center justify-center flex-shrink-0">
+                <Sparkles className="w-4 h-4 text-white" />
               </span>
               <div className="flex-grow min-w-0">
-                <p className="text-xs font-bold text-primary uppercase tracking-wider">
+                <p className="text-xs font-extrabold text-zinc-950 uppercase tracking-wider">
                   Demo Admin Account
                 </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 truncate">
+                <p className="text-xs text-zinc-500 mt-0.5 truncate">
                   {DEMO_EMAIL} · {DEMO_PASS}
                 </p>
               </div>
-              <ArrowRight className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+              <ArrowRight className="w-4 h-4 text-zinc-950 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
             </button>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               {/* Email */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wider">
+                <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">
                   Email
                 </label>
                 <div className="relative">
@@ -117,14 +117,14 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.com"
-                    className="w-full pl-10 pr-4 py-2.5 text-sm bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl text-zinc-900 dark:text-white placeholder-zinc-400 outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 text-sm bg-zinc-50 border border-zinc-200 rounded-xl text-zinc-900 placeholder-zinc-400 outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 transition-all font-medium"
                   />
                 </div>
               </div>
 
               {/* Password */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wider">
+                <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">
                   Password
                 </label>
                 <div className="relative">
@@ -136,12 +136,12 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-10 py-2.5 text-sm bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl text-zinc-900 dark:text-white placeholder-zinc-400 outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+                    className="w-full pl-10 pr-10 py-2.5 text-sm bg-zinc-50 border border-zinc-200 rounded-xl text-zinc-900 placeholder-zinc-400 outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 transition-all font-medium"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors cursor-pointer"
                   >
                     {showPassword ? (
                       <EyeOff className="w-4 h-4" />
@@ -154,7 +154,7 @@ export default function LoginPage() {
 
               {/* Error message */}
               {error && (
-                <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl px-4 py-3">
+                <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3 font-medium">
                   {error}
                 </div>
               )}
@@ -163,7 +163,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 disabled:bg-primary/60 text-black font-semibold py-2.5 rounded-xl text-sm transition-all shadow-md hover:shadow-primary/20 mt-1"
+                className="w-full flex items-center justify-center gap-2 bg-zinc-950 hover:bg-zinc-800 disabled:opacity-50 text-white font-extrabold py-3 rounded-xl text-sm transition-all shadow-md mt-1 cursor-pointer"
               >
                 {isLoading ? (
                   <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
@@ -175,11 +175,11 @@ export default function LoginPage() {
             </form>
 
             {/* Footer */}
-            <p className="mt-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-6 text-center text-sm text-zinc-500">
               Don&apos;t have an account?{" "}
               <Link
                 href="/register"
-                className="text-primary hover:text-primary/80 font-semibold transition-colors"
+                className="text-zinc-950 hover:underline font-extrabold transition-colors"
               >
                 Sign up
               </Link>

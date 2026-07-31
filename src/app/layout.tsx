@@ -9,11 +9,15 @@ import { Footer } from "@/components/layout/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  fallback: ["monospace"],
 });
 
 export const metadata: Metadata = {
@@ -33,9 +37,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased light`}
+      style={{ colorScheme: "light" }}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col bg-white text-zinc-900 selection:bg-zinc-950 selection:text-white">
         <Providers>
           <Navbar />
           <main className="flex flex-1 flex-col">{children}</main>

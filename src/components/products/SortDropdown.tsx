@@ -26,12 +26,12 @@ export function SortDropdown() {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm text-default-500 whitespace-nowrap">Sort by:</span>
+      <span className="text-sm text-zinc-500 font-medium whitespace-nowrap">Sort by:</span>
       <select
         value={currentSort}
         onChange={handleSortChange}
         disabled={isPending}
-        className="bg-default-50 border border-default-200 text-default-700 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2 outline-none cursor-pointer"
+        className="bg-white border border-zinc-200 text-zinc-900 text-sm rounded-xl px-3 py-1.5 font-medium outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 block p-2 cursor-pointer shadow-sm"
       >
         <option value="newest">Newest</option>
         <option value="price_asc">Price: Low to High</option>

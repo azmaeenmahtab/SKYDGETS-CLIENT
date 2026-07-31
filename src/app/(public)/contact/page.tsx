@@ -60,30 +60,30 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
       
       {/* HERO SECTION */}
-      <section className="relative w-full pt-28 sm:pt-36 pb-16 md:pb-24 overflow-hidden border-b border-zinc-200/80 dark:border-zinc-800 bg-gradient-to-b from-zinc-50/80 via-white to-white dark:from-zinc-900/60 dark:via-zinc-950 dark:to-zinc-950">
+      <section className="relative w-full pt-28 sm:pt-36 pb-16 md:pb-24 overflow-hidden border-b border-zinc-200/80 bg-gradient-to-b from-zinc-50/80 via-white to-white">
         {/* Background Grid Spotlight */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.08),rgba(255,255,255,0))]" />
-        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35" />
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35" />
 
         <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20 shadow-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-violet-500/10 text-violet-600 border border-violet-500/20 shadow-sm mb-6">
             <MessageSquare className="w-3.5 h-3.5" />
             <span>WE'RE HERE TO HELP</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-950 dark:text-white leading-[1.1]">
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-zinc-950 leading-[1.1]">
             Contact Support & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-500">
               Get Instant Assistance
             </span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl font-normal leading-relaxed">
+          <p className="mt-6 text-base sm:text-lg text-zinc-600 max-w-2xl font-normal leading-relaxed">
             Have questions about an item, order shipping status, or AI hardware grading? Send us a message and our support team will respond promptly.
           </p>
         </div>

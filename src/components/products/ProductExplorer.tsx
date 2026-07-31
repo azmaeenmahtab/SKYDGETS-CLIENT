@@ -56,26 +56,26 @@ export function ProductExplorer({ categories, initialData }: ProductExplorerProp
       {/* Main Content */}
       <main className="flex-1 min-w-0 w-full flex flex-col gap-5 min-h-[600px]">
         {/* Toolbar */}
-        <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 shadow-sm overflow-hidden">
+        <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white border border-zinc-200/80 rounded-2xl px-4 py-3 shadow-sm overflow-hidden">
           {/* Subtle loading bar top border indicator during filter transition */}
           {isFetching && (
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-500 via-primary to-violet-500 animate-pulse" />
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-500 via-zinc-900 to-violet-500 animate-pulse" />
           )}
 
           <div className="flex items-center gap-2">
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm text-zinc-500">
               Showing{" "}
-              <span className="font-semibold text-zinc-900 dark:text-white">
+              <span className="font-semibold text-zinc-950">
                 {productsResponse.items.length}
               </span>{" "}
               of{" "}
-              <span className="font-semibold text-zinc-900 dark:text-white">
+              <span className="font-semibold text-zinc-950">
                 {productsResponse.total}
               </span>{" "}
               products
             </p>
             {isFetching && (
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-primary ml-1" />
+              <Loader2 className="w-3.5 h-3.5 animate-spin text-zinc-900 ml-1" />
             )}
           </div>
 

@@ -56,28 +56,28 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-[85vh] px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 bg-[#fafafa] dark:bg-zinc-950">
-      <Card className="w-full max-w-[440px] border border-zinc-200/60 dark:border-zinc-850 bg-white dark:bg-zinc-900 shadow-xl shadow-zinc-200/40 dark:shadow-none rounded-2xl p-4">
+    <div className="flex flex-col justify-center items-center min-h-[85vh] px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 bg-white text-zinc-900">
+      <Card className="w-full max-w-[440px] border border-zinc-200/80 bg-white shadow-xl shadow-zinc-200/40 rounded-2xl p-4">
         
         {/* Header Block matching login layout */}
         <CardHeader className="flex flex-col gap-2 items-center pt-6 pb-4">
-          <div className="flex items-center gap-2 text-sm font-black tracking-tight text-zinc-950 dark:text-white">
-            <span className="bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 px-1.5 py-0.5 rounded-md text-[10px] font-black tracking-widest leading-none">
+          <div className="flex items-center gap-2 text-sm font-black tracking-tight text-zinc-950">
+            <span className="bg-zinc-950 text-white px-1.5 py-0.5 rounded-md text-[10px] font-black tracking-widest leading-none">
               SD
             </span>
             SKYDGETS
           </div>
-          <h1 className="text-2xl font-black text-zinc-900 dark:text-white mt-2 tracking-tight">
+          <h1 className="text-2xl font-black text-zinc-950 mt-2 tracking-tight">
             Create an account
           </h1>
-          <p className="text-xs font-medium text-zinc-400 dark:text-zinc-500">
+          <p className="text-xs font-medium text-zinc-400">
             Get started with your shopping experience
           </p>
         </CardHeader>
 
         <div className="flex flex-col gap-4 p-2 pb-4">
           {serverError && (
-            <div className="p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 rounded-xl text-xs font-semibold text-center">
+            <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-xs font-semibold text-center">
               {serverError}
             </div>
           )}
@@ -85,7 +85,7 @@ export default function RegisterPage() {
           <form className="flex flex-col gap-4" onSubmit={handleRegister}>
             {/* Full Name Input */}
             <TextField isInvalid={!!errors.name} className="flex flex-col gap-1.5">
-              <Label className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+              <Label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                 Full Name
               </Label>
               <div className="relative flex items-center">
@@ -94,7 +94,7 @@ export default function RegisterPage() {
                   placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-zinc-50/50 dark:bg-zinc-950/40 border border-zinc-200 dark:border-zinc-800 rounded-xl outline-none transition-all focus:border-zinc-950 dark:focus:border-white text-zinc-900 dark:text-white placeholder:text-zinc-400/70 shadow-none"
+                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-zinc-50 border border-zinc-200 rounded-xl outline-none transition-all focus:border-zinc-950 text-zinc-900 placeholder:text-zinc-400/70 shadow-none font-medium"
                 />
               </div>
               {errors.name && <FieldError className="text-[11px] font-medium text-red-500 mt-0.5">{errors.name}</FieldError>}
@@ -102,7 +102,7 @@ export default function RegisterPage() {
 
             {/* Email Input */}
             <TextField isInvalid={!!errors.email} className="flex flex-col gap-1.5">
-              <Label className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+              <Label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                 Email
               </Label>
               <div className="relative flex items-center">
@@ -112,7 +112,7 @@ export default function RegisterPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-zinc-50/50 dark:bg-zinc-950/40 border border-zinc-200 dark:border-zinc-800 rounded-xl outline-none transition-all focus:border-zinc-950 dark:focus:border-white text-zinc-900 dark:text-white placeholder:text-zinc-400/70 shadow-none"
+                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-zinc-50 border border-zinc-200 rounded-xl outline-none transition-all focus:border-zinc-950 text-zinc-900 placeholder:text-zinc-400/70 shadow-none font-medium"
                 />
               </div>
               {errors.email && <FieldError className="text-[11px] font-medium text-red-500 mt-0.5">{errors.email}</FieldError>}
@@ -120,7 +120,7 @@ export default function RegisterPage() {
 
             {/* Password Input */}
             <TextField isInvalid={!!errors.password} className="flex flex-col gap-1.5">
-              <Label className="text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+              <Label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                 Password
               </Label>
               <div className="relative flex items-center">
@@ -130,12 +130,12 @@ export default function RegisterPage() {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-9 pr-10 py-2.5 text-sm bg-zinc-50/50 dark:bg-zinc-950/40 border border-zinc-200 dark:border-zinc-800 rounded-xl outline-none transition-all focus:border-zinc-950 dark:focus:border-white text-zinc-900 dark:text-white placeholder:text-zinc-400/70 shadow-none"
+                  className="w-full pl-9 pr-10 py-2.5 text-sm bg-zinc-50 border border-zinc-200 rounded-xl outline-none transition-all focus:border-zinc-950 text-zinc-900 placeholder:text-zinc-400/70 shadow-none font-medium"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors"
+                  className="absolute right-3 text-zinc-400 hover:text-zinc-600 transition-colors cursor-pointer"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -147,16 +147,16 @@ export default function RegisterPage() {
             <Button 
               type="submit" 
               isPending={loading}
-              className="w-full mt-2 py-3 bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-bold text-sm rounded-xl transition-all border border-transparent dark:border-white shadow-sm"
+              className="w-full mt-2 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold text-sm rounded-xl transition-all border border-transparent shadow-sm cursor-pointer"
             >
               Sign up
             </Button>
           </form>
 
           {/* Footer Navigation link */}
-          <div className="text-center text-xs font-medium text-zinc-500 dark:text-zinc-400 mt-4">
+          <div className="text-center text-xs font-medium text-zinc-500 mt-4">
             Already have an account?{" "}
-            <Link href="/login" className="text-zinc-950 dark:text-white font-bold hover:underline">
+            <Link href="/login" className="text-zinc-950 font-bold hover:underline">
               Sign in
             </Link>
           </div>
@@ -166,7 +166,7 @@ export default function RegisterPage() {
       {/* Global Bottom Branding Backlink */}
       <Link 
         href="/" 
-        className="mt-6 text-xs font-semibold text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+        className="mt-6 text-xs font-semibold text-zinc-400 hover:text-zinc-600 transition-colors"
       >
         ← Back to SKYDGETS
       </Link>

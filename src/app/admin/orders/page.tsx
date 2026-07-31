@@ -54,22 +54,22 @@ export default function AdminOrdersPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "placed":
-        return "bg-blue-500/10 border-blue-500/20 text-blue-400";
+        return "bg-blue-50 border-blue-200 text-blue-700";
       case "confirmed":
-        return "bg-indigo-500/10 border-indigo-500/20 text-indigo-400";
+        return "bg-indigo-50 border-indigo-200 text-indigo-700";
       case "shipped":
-        return "bg-amber-500/10 border-amber-500/20 text-amber-400";
+        return "bg-amber-50 border-amber-200 text-amber-700";
       case "delivered":
-        return "bg-emerald-500/10 border-emerald-500/20 text-emerald-400";
+        return "bg-emerald-50 border-emerald-200 text-emerald-700";
       case "cancelled":
-        return "bg-red-500/10 border-red-500/20 text-red-400";
+        return "bg-red-50 border-red-200 text-red-700";
       default:
-        return "bg-zinc-500/10 border-zinc-500/20 text-zinc-400";
+        return "bg-zinc-100 border-zinc-200 text-zinc-700";
     }
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
       {/* Background Spotlight */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
 
@@ -77,20 +77,20 @@ export default function AdminOrdersPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20 mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-violet-500/10 text-violet-600 border border-violet-500/20 mb-3">
               <ClipboardList className="w-3.5 h-3.5" />
               <span>ADMIN CONTROL</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white">
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950">
               Manage Orders
             </h1>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            <p className="text-sm text-zinc-500 mt-1">
               Update status, view history, and process order fulfillment.
             </p>
           </div>
           <button
             onClick={() => refetch()}
-            className="flex items-center gap-2 px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white text-xs font-bold rounded-full transition-all self-start sm:self-center cursor-pointer active:scale-95 border border-zinc-200/80 dark:border-zinc-800"
+            className="flex items-center gap-2 px-5 py-2.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold rounded-full transition-all self-start sm:self-center cursor-pointer active:scale-95 border border-zinc-200/80"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Refresh Orders</span>
@@ -98,7 +98,7 @@ export default function AdminOrdersPage() {
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600 dark:text-red-400">
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600">
             <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
             <div className="text-sm font-semibold">{error}</div>
           </div>
@@ -110,7 +110,7 @@ export default function AdminOrdersPage() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-28 rounded-3xl bg-zinc-100 dark:bg-zinc-900 animate-pulse border border-zinc-200/60 dark:border-zinc-800"
+                className="h-28 rounded-3xl bg-zinc-100 animate-pulse border border-zinc-200/60"
               />
             ))}
           </div>
@@ -118,10 +118,10 @@ export default function AdminOrdersPage() {
 
         {/* Empty state */}
         {!isLoading && (!orders || orders.length === 0) && (
-          <div className="text-center py-20 bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-8 shadow-sm">
-            <ClipboardList className="w-12 h-12 text-zinc-400 dark:text-zinc-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-zinc-950 dark:text-white mb-1">No orders found</h2>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">There are no orders placed in the system yet.</p>
+          <div className="text-center py-20 bg-white border border-zinc-200/80 rounded-3xl p-8 shadow-sm">
+            <ClipboardList className="w-12 h-12 text-zinc-400 mx-auto mb-4" />
+            <h2 className="text-xl font-bold text-zinc-950 mb-1">No orders found</h2>
+            <p className="text-sm text-zinc-500">There are no orders placed in the system yet.</p>
           </div>
         )}
 
@@ -136,26 +136,26 @@ export default function AdminOrdersPage() {
               return (
                 <div
                   key={order._id}
-                  className="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl p-6 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-200 shadow-sm"
+                  className="bg-white border border-zinc-200/80 rounded-3xl p-6 hover:border-zinc-300 transition-all duration-200 shadow-sm"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     {/* Order Details */}
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-1">
                       <div>
-                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-semibold mb-1">
+                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-bold mb-1">
                           Order Number
                         </p>
-                        <span className="font-extrabold text-white tracking-wider text-sm">
+                        <span className="font-extrabold text-zinc-950 tracking-wider text-sm">
                           {order.orderNumber}
                         </span>
                       </div>
 
                       <div>
-                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-semibold mb-1">
+                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-bold mb-1">
                           Customer
                         </p>
-                        <div className="text-sm text-zinc-300">
-                          <p className="font-semibold text-white flex items-center gap-1.5">
+                        <div className="text-sm text-zinc-700 font-medium">
+                          <p className="font-bold text-zinc-950 flex items-center gap-1.5">
                             <User className="w-3.5 h-3.5 text-zinc-400" />
                             {customerName}
                           </p>
@@ -167,10 +167,10 @@ export default function AdminOrdersPage() {
                       </div>
 
                       <div>
-                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-semibold mb-1">
+                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-bold mb-1">
                           Date & Quantity
                         </p>
-                        <div className="text-sm text-zinc-300">
+                        <div className="text-sm text-zinc-700 font-medium">
                           <p className="flex items-center gap-1.5">
                             <Calendar className="w-3.5 h-3.5 text-zinc-400" />
                             {new Date(order.createdAt).toLocaleDateString()}
@@ -182,12 +182,12 @@ export default function AdminOrdersPage() {
                       </div>
 
                       <div>
-                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-semibold mb-1">
+                        <p className="text-xs text-zinc-500 uppercase tracking-wider font-bold mb-1">
                           Payment & Total
                         </p>
                         <div className="text-sm">
-                          <p className="font-bold text-white">{formatPrice(order.total)}</p>
-                          <p className="text-xs text-zinc-500 mt-0.5 uppercase">
+                          <p className="font-black text-zinc-950">{formatPrice(order.total)}</p>
+                          <p className="text-xs text-zinc-500 mt-0.5 uppercase font-medium">
                             {order.paymentMethod} · {order.paymentStatus}
                           </p>
                         </div>
@@ -198,23 +198,23 @@ export default function AdminOrdersPage() {
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 lg:self-center self-start">
                       {!isEditing ? (
                         <>
-                          <span className={`px-3 py-1 border rounded-full text-xs font-semibold capitalize text-center ${getStatusColor(order.orderStatus)}`}>
+                          <span className={`px-3.5 py-1 border rounded-full text-xs font-bold uppercase tracking-wider capitalize text-center ${getStatusColor(order.orderStatus)}`}>
                             {order.orderStatus}
                           </span>
                           <button
                             onClick={() => handleUpdateClick(order._id, order.orderStatus)}
-                            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-white/10 hover:bg-white/15 text-white text-xs font-bold rounded-xl transition-colors"
+                            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold rounded-xl transition-colors cursor-pointer"
                           >
                             <Edit className="w-3.5 h-3.5" />
                             Update Status
                           </button>
                         </>
                       ) : (
-                        <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center bg-zinc-900 border border-white/10 p-2.5 rounded-xl">
+                        <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center bg-zinc-50 border border-zinc-200 p-2.5 rounded-xl">
                           <select
                             value={newStatus}
                             onChange={(e) => setNewStatus(e.target.value as OrderStatus)}
-                            className="bg-zinc-950 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none"
+                            className="bg-white border border-zinc-200 rounded-lg px-3 py-1.5 text-xs text-zinc-900 font-medium focus:outline-none focus:ring-2 focus:ring-zinc-950"
                           >
                             <option value="placed">Placed</option>
                             <option value="confirmed">Confirmed</option>
@@ -230,20 +230,20 @@ export default function AdminOrdersPage() {
                             placeholder="Add brief note..."
                             value={statusNote}
                             onChange={(e) => setStatusNote(e.target.value)}
-                            className="bg-zinc-950 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none min-w-[120px]"
+                            className="bg-white border border-zinc-200 rounded-lg px-3 py-1.5 text-xs text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-950 min-w-[120px]"
                           />
 
                           <div className="flex gap-1">
                             <button
                               onClick={() => handleSaveUpdate(order._id)}
                               disabled={updateMutation.isPending}
-                              className="px-3 py-1.5 bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1"
+                              className="px-3 py-1.5 bg-zinc-950 hover:bg-zinc-800 disabled:opacity-50 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1 cursor-pointer"
                             >
                               Save
                             </button>
                             <button
                               onClick={() => setEditingOrderId(null)}
-                              className="px-3 py-1.5 bg-white/10 hover:bg-white/15 text-white text-xs font-bold rounded-lg transition-colors"
+                              className="px-3 py-1.5 bg-zinc-200 hover:bg-zinc-300 text-zinc-800 text-xs font-bold rounded-lg transition-colors cursor-pointer"
                             >
                               Cancel
                             </button>

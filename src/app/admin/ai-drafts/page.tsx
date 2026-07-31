@@ -20,12 +20,12 @@ import {
 } from "lucide-react";
 
 const STATUS_FILTERS: { value: AIListingDraftStatus | "all"; label: string; icon: any; color: string }[] = [
-  { value: "all", label: "All Drafts", icon: FileText, color: "bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200" },
-  { value: "processing", label: "Processing", icon: Clock, color: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 animate-pulse" },
-  { value: "ready_for_review", label: "Ready for Review", icon: Sparkles, color: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20" },
-  { value: "approved", label: "Approved & Published", icon: CheckCircle, color: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20" },
-  { value: "rejected", label: "Rejected", icon: XCircle, color: "bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border border-zinc-500/20" },
-  { value: "failed", label: "Failed", icon: AlertCircle, color: "bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20" },
+  { value: "all", label: "All Drafts", icon: FileText, color: "bg-zinc-100 text-zinc-800" },
+  { value: "processing", label: "Processing", icon: Clock, color: "bg-blue-50 text-blue-700 border border-blue-200 animate-pulse" },
+  { value: "ready_for_review", label: "Ready for Review", icon: Sparkles, color: "bg-purple-50 text-purple-700 border border-purple-200" },
+  { value: "approved", label: "Approved & Published", icon: CheckCircle, color: "bg-emerald-50 text-emerald-700 border border-emerald-200" },
+  { value: "rejected", label: "Rejected", icon: XCircle, color: "bg-zinc-100 text-zinc-700 border border-zinc-200" },
+  { value: "failed", label: "Failed", icon: AlertCircle, color: "bg-red-50 text-red-700 border border-red-200" },
 ];
 
 export default function AIDraftsPage() {
@@ -50,32 +50,32 @@ export default function AIDraftsPage() {
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
       {/* Background Spotlight */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 pt-28 sm:pt-36 pb-16 sm:px-6 lg:px-8 w-full space-y-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-zinc-200/80 dark:border-zinc-800 pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-zinc-200/80 pb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 border border-purple-500/20 mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>AI DRAFT GENERATOR</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white">
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950">
               AI Listing Drafts
             </h1>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            <p className="text-sm text-zinc-500 mt-1">
               Create product listings in seconds using Gemini Vision AI and automated pricing pipelines.
             </p>
           </div>
 
           <Link
             href="/admin/ai-drafts/new"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl active:scale-95 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl active:scale-95 cursor-pointer"
           >
-            <Plus className="w-4 h-4 text-purple-400 dark:text-purple-600" />
+            <Plus className="w-4 h-4 text-purple-400" />
             <span>Generate New AI Draft</span>
           </Link>
         </div>
@@ -92,7 +92,7 @@ export default function AIDraftsPage() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                   isActive
                     ? "bg-purple-600 text-white shadow-md"
-                    : "bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
+                    : "bg-zinc-100 hover:bg-zinc-200 text-zinc-600"
                 }`}
               >
                 <Icon size={14} />
@@ -108,22 +108,22 @@ export default function AIDraftsPage() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="h-64 rounded-3xl bg-zinc-100 dark:bg-zinc-900 animate-pulse border border-zinc-200/60 dark:border-zinc-800"
+                className="h-64 rounded-3xl bg-zinc-100 animate-pulse border border-zinc-200/60"
               />
             ))}
           </div>
         ) : drafts.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 px-4 text-center bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 rounded-3xl shadow-sm">
-            <Sparkles className="w-12 h-12 text-zinc-400 dark:text-zinc-500 mb-4" />
-            <h3 className="text-xl font-extrabold text-zinc-950 dark:text-white mb-2">
+          <div className="flex flex-col items-center justify-center py-20 px-4 text-center bg-white border border-zinc-200/80 rounded-3xl shadow-sm">
+            <Sparkles className="w-12 h-12 text-zinc-400 mb-4" />
+            <h3 className="text-xl font-extrabold text-zinc-950 mb-2">
               No AI drafts found
             </h3>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-sm mb-6">
+            <p className="text-sm text-zinc-500 max-w-sm mb-6">
               Upload photos of a gadget to run the Gemini AI Vision listing pipeline.
             </p>
             <Link
               href="/admin/ai-drafts/new"
-              className="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg"
+              className="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg"
             >
               Generate AI Draft
             </Link>
@@ -140,11 +140,11 @@ export default function AIDraftsPage() {
               return (
                 <div
                   key={draft._id}
-                  className="group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 p-5 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 shadow-sm hover:shadow-xl"
+                  className="group relative flex flex-col justify-between rounded-3xl bg-white border border-zinc-200/80 p-5 hover:border-zinc-300 transition-all duration-300 shadow-sm hover:shadow-xl"
                 >
                   <div>
                     {/* Thumbnail canvas */}
-                    <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 mb-4">
+                    <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-zinc-100 mb-4">
                       {primaryImg ? (
                         <img
                           src={primaryImg}
@@ -166,18 +166,18 @@ export default function AIDraftsPage() {
                       <span>{new Date(draft.createdAt).toLocaleDateString()}</span>
                     </div>
 
-                    <h3 className="text-base font-extrabold text-zinc-950 dark:text-white line-clamp-2 leading-snug">
+                    <h3 className="text-base font-extrabold text-zinc-950 line-clamp-2 leading-snug">
                       {titleText}
                     </h3>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-                    <span className="text-xs font-mono text-purple-600 dark:text-purple-400 font-bold">
+                  <div className="pt-4 mt-4 border-t border-zinc-100 flex items-center justify-between">
+                    <span className="text-xs font-mono text-purple-600 font-bold">
                       {draft.rawImages?.length ?? 0} Photo(s) Uploaded
                     </span>
                     <Link
                       href={`/admin/ai-drafts/${draft._id}`}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-xs font-bold rounded-full transition-all cursor-pointer active:scale-95"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-bold rounded-full transition-all cursor-pointer active:scale-95"
                     >
                       <Eye className="w-3.5 h-3.5" />
                       <span>Review Draft</span>

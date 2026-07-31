@@ -34,17 +34,19 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   ]);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-white">
-          Explore Products
-        </h1>
-        <p className="mt-1 text-zinc-500 dark:text-zinc-400">
-          Premium resale gadgets — AI-graded, verified, and ready to ship.
-        </p>
-      </div>
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
+      <div className="mx-auto max-w-7xl px-4 pt-28 sm:pt-32 pb-12 sm:pb-16 sm:px-6 lg:px-8 w-full">
+        <div className="mb-6">
+          <h1 className="text-3xl font-extrabold tracking-tight text-zinc-950">
+            Explore Products
+          </h1>
+          <p className="mt-1 text-zinc-500">
+            Premium resale gadgets — AI-graded, verified, and ready to ship.
+          </p>
+        </div>
 
-      <ProductExplorer categories={categories} initialData={initialProducts} />
+        <ProductExplorer categories={categories} initialData={initialProducts} />
+      </div>
     </div>
   );
 }

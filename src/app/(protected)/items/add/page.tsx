@@ -175,8 +175,8 @@ export default function AddItemPage() {
   ];
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
-      {/* Background Spotlight */}
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
+      {/* Background Radial Grid Spotlight */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 pt-28 sm:pt-32 pb-16 sm:px-6 lg:px-8 w-full space-y-6">
@@ -185,28 +185,28 @@ export default function AddItemPage() {
         <div>
           <Link
             href="/admin/products"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Inventory Manager
           </Link>
 
           <div className="mt-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 border border-purple-500/20 mb-2">
               <Package className="w-3.5 h-3.5" />
               <span>NEW PRODUCT LISTING</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white">
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950">
               Create New Hardware Listing
             </h1>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            <p className="text-sm text-zinc-500 mt-1">
               Add verified gadget specifications, set condition grades, upload photo URLs, and publish to catalog.
             </p>
           </div>
         </div>
 
         {serverError && (
-          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600 dark:text-red-400">
+          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600">
             <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
             <div className="text-sm font-semibold">{serverError}</div>
           </div>
@@ -215,14 +215,14 @@ export default function AddItemPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           
           {/* Card 1: Core Details */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-5">
-            <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+          <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-5">
+            <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
               <Tag className="w-5 h-5 text-purple-500" />
               Basic Information
             </h2>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                 Product Title *
               </label>
               <input
@@ -231,13 +231,13 @@ export default function AddItemPage() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Apple iPhone 14 Pro 256GB — Deep Purple (Like New)"
-                className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Brand *
                 </label>
                 <input
@@ -246,7 +246,7 @@ export default function AddItemPage() {
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                   placeholder="e.g. Apple, Samsung, Dell, Asus"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
                 />
               </div>
 
@@ -262,7 +262,7 @@ export default function AddItemPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                 Short Tagline Summary *
               </label>
               <input
@@ -272,12 +272,12 @@ export default function AddItemPage() {
                 value={shortDescription}
                 onChange={(e) => setShortDescription(e.target.value)}
                 placeholder="High-tier flagship device in pristine like-new condition with 94% battery health"
-                className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                 Full Description & Physical Condition Notes *
               </label>
               <textarea
@@ -286,26 +286,26 @@ export default function AddItemPage() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Provide detailed information regarding screen scratch status, chassis condition, battery health metrics, box inclusions..."
-                className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none font-medium"
               />
             </div>
           </div>
 
           {/* Card 2: Dynamic Category Attributes */}
           {attrSchema.length > 0 && (
-            <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+            <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-4">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <Layers className="w-5 h-5 text-purple-500" />
                 {selectedCategory?.name} Technical Specifications
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              <p className="text-xs text-zinc-500">
                 Attributes specific to category <strong>{selectedCategory?.name}</strong>.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {attrSchema.map((attr) => (
                   <div key={attr.key}>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                       {attr.label} {attr.unit ? `(${attr.unit})` : ""}{attr.required ? " *" : ""}
                     </label>
 
@@ -335,7 +335,7 @@ export default function AddItemPage() {
                         value={(attributes[attr.key] as string | number) ?? ""}
                         onChange={(e) => handleAttrChange(attr.key, e.target.value, attr.type)}
                         placeholder={`Enter ${attr.label.toLowerCase()}`}
-                        className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
                       />
                     )}
                   </div>
@@ -345,15 +345,15 @@ export default function AddItemPage() {
           )}
 
           {/* Card 3: Pricing & Inventory Stock */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-5">
-            <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+          <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-5">
+            <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-purple-500" />
               Pricing & Stock Levels
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Listing Price (BDT ৳) *
                 </label>
                 <input
@@ -363,12 +363,12 @@ export default function AddItemPage() {
                   value={priceRaw}
                   onChange={(e) => setPriceRaw(e.target.value)}
                   placeholder="e.g. 85000"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 font-extrabold"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-extrabold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Compare Original Price (BDT ৳)
                 </label>
                 <input
@@ -377,12 +377,12 @@ export default function AddItemPage() {
                   value={compareAtPriceRaw}
                   onChange={(e) => setCompareAtPriceRaw(e.target.value)}
                   placeholder="e.g. 110000"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 font-bold"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-bold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Stock Units Available *
                 </label>
                 <input
@@ -392,7 +392,7 @@ export default function AddItemPage() {
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                   placeholder="1"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 font-bold"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-bold"
                 />
               </div>
             </div>
@@ -419,16 +419,16 @@ export default function AddItemPage() {
           </div>
 
           {/* Card 4: Product Image URLs */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-3">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+          <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <ImageIcon className="w-5 h-5 text-purple-500" />
                 Product Image URLs
               </h2>
               <button
                 type="button"
                 onClick={addImageRow}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-600 hover:underline cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 Add Image Row
@@ -439,10 +439,10 @@ export default function AddItemPage() {
               {images.map((img, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col sm:flex-row items-center gap-3 p-3 bg-zinc-50 dark:bg-zinc-950 rounded-2xl border border-zinc-200/60 dark:border-zinc-800"
+                  className="flex flex-col sm:flex-row items-center gap-3 p-3 bg-zinc-50 rounded-2xl border border-zinc-200/60"
                 >
                   {/* Thumbnail preview */}
-                  <div className="relative w-14 h-14 rounded-xl bg-zinc-200 dark:bg-zinc-800 overflow-hidden flex-shrink-0">
+                  <div className="relative w-14 h-14 rounded-xl bg-zinc-200 overflow-hidden flex-shrink-0">
                     {img.url ? (
                       <img src={img.url} alt={img.alt || "Product thumbnail"} className="w-full h-full object-cover" />
                     ) : (
@@ -458,12 +458,12 @@ export default function AddItemPage() {
                       placeholder="Image URL (https://...)"
                       value={img.url}
                       onChange={(e) => handleImageChange(idx, "url", e.target.value)}
-                      className="w-full text-xs bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-3 py-2.5 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full text-xs bg-white border border-zinc-200 rounded-xl px-3 py-2.5 text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
                     />
                   </div>
 
                   <div className="flex items-center gap-3 flex-shrink-0">
-                    <label className="flex items-center gap-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-300 cursor-pointer">
+                    <label className="flex items-center gap-1.5 text-xs font-semibold text-zinc-600 cursor-pointer">
                       <input
                         type="radio"
                         name="primaryImage"
@@ -478,7 +478,7 @@ export default function AddItemPage() {
                       <button
                         type="button"
                         onClick={() => removeImageRow(idx)}
-                        className="p-1.5 text-zinc-400 hover:text-red-500 transition-colors"
+                        className="p-1.5 text-zinc-400 hover:text-red-500 transition-colors cursor-pointer"
                         title="Remove image"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -494,7 +494,7 @@ export default function AddItemPage() {
           <div className="flex items-center justify-end gap-4 pt-4">
             <Link
               href="/admin/products"
-              className="px-8 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white font-bold text-xs uppercase tracking-wider transition-all"
+              className="px-8 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-bold text-xs uppercase tracking-wider transition-all"
             >
               Cancel
             </Link>
@@ -502,7 +502,7 @@ export default function AddItemPage() {
             <button
               type="submit"
               disabled={isPending}
-              className="px-8 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl flex items-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50"
+              className="px-8 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl flex items-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50"
             >
               {isPending ? (
                 <span>Publishing Listing...</span>

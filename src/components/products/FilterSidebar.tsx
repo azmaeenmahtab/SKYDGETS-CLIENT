@@ -89,19 +89,19 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
     selectedPath || selectedConditions.length > 0 || minPrice || maxPrice;
 
   return (
-    <div className="flex flex-col gap-0 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-sm">
+    <div className="flex flex-col gap-0 bg-white rounded-2xl border border-zinc-200/80 overflow-hidden shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100 dark:border-zinc-800">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="w-4 h-4 text-primary" />
-          <h2 className="text-sm font-bold text-zinc-900 dark:text-white tracking-wide uppercase">
+          <SlidersHorizontal className="w-4 h-4 text-zinc-950" />
+          <h2 className="text-sm font-extrabold text-zinc-950 tracking-wide uppercase">
             Filters
           </h2>
         </div>
         {hasActiveFilters && (
           <button
             onClick={handleReset}
-            className="flex items-center gap-1 text-xs font-semibold text-red-500 hover:text-red-600 transition-colors"
+            className="flex items-center gap-1 text-xs font-bold text-red-600 hover:text-red-700 transition-colors"
           >
             <X className="w-3 h-3" />
             Reset
@@ -110,10 +110,10 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
       </div>
 
       {/* Categories */}
-      <div className="px-4 py-4 border-b border-zinc-100 dark:border-zinc-800">
+      <div className="px-4 py-4 border-b border-zinc-100">
         <div className="flex items-center gap-1.5 mb-3">
           <Tag className="w-3.5 h-3.5 text-zinc-400" />
-          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+          <h3 className="text-xs font-extrabold uppercase tracking-wider text-zinc-500">
             Category
           </h3>
         </div>
@@ -124,7 +124,7 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
             if (children.length === 0) return null;
             return (
               <div key={parent._id}>
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1.5 pl-1">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1.5 pl-1">
                   {parent.name}
                 </p>
                 <div className="flex flex-col gap-1">
@@ -135,17 +135,17 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
                         key={child._id}
                         onClick={() => handleCategoryChange(child.path)}
                         disabled={isPending}
-                        className={`flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-150 ${
+                        className={`flex items-center gap-2.5 w-full text-left px-3 py-2 rounded-xl text-sm transition-all duration-150 ${
                           isSelected
-                            ? "bg-black/20 text-zinc-400 font-semibold shadow-sm shadow-primary/20"
-                            : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                            ? "bg-zinc-950 text-white font-bold shadow-md"
+                            : "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950"
                         }`}
                       >
                         <span
                           className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 transition-colors ${
                             isSelected
-                              ? "border-white bg-black"
-                              : "border-zinc-300 dark:border-zinc-600"
+                              ? "border-white bg-white"
+                              : "border-zinc-300 bg-transparent"
                           }`}
                         />
                         {child.name}
@@ -160,10 +160,10 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
       </div>
 
       {/* Price Range */}
-      <div className="px-4 py-4 border-b border-zinc-100 dark:border-zinc-800">
+      <div className="px-4 py-4 border-b border-zinc-100">
         <div className="flex items-center gap-1.5 mb-3">
           <CircleDollarSign className="w-3.5 h-3.5 text-zinc-400" />
-          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+          <h3 className="text-xs font-extrabold uppercase tracking-wider text-zinc-500">
             Price (BDT)
           </h3>
         </div>
@@ -174,21 +174,21 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
               placeholder="Min"
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
-              className="w-full text-sm bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-zinc-900 dark:text-white placeholder-zinc-400 outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+              className="w-full text-sm bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2 text-zinc-900 placeholder-zinc-400 outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 transition-all font-medium"
             />
-            <span className="text-zinc-300 dark:text-zinc-600 text-lg font-light flex-shrink-0">—</span>
+            <span className="text-zinc-300 text-lg font-light flex-shrink-0">—</span>
             <input
               type="number"
               placeholder="Max"
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}
-              className="w-full text-sm bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-zinc-900 dark:text-white placeholder-zinc-400 outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+              className="w-full text-sm bg-zinc-50 border border-zinc-200 rounded-xl px-3 py-2 text-zinc-900 placeholder-zinc-400 outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 transition-all font-medium"
             />
           </div>
           <button
             type="submit"
             disabled={isPending}
-            className="w-full text-sm font-semibold bg-primary hover:bg-primary/90 text-white py-2 rounded-lg transition-all disabled:opacity-50"
+            className="w-full text-sm font-extrabold bg-zinc-950 hover:bg-zinc-800 text-white py-2 rounded-xl transition-all disabled:opacity-50 shadow-sm cursor-pointer"
           >
             Apply Price
           </button>
@@ -199,7 +199,7 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
       <div className="px-4 py-4">
         <div className="flex items-center gap-1.5 mb-3">
           <Activity className="w-3.5 h-3.5 text-zinc-400" />
-          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+          <h3 className="text-xs font-extrabold uppercase tracking-wider text-zinc-500">
             Condition
           </h3>
         </div>
@@ -209,10 +209,10 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
             return (
               <label
                 key={cond.value}
-                className={`flex items-center gap-2.5 px-3 py-2 rounded-lg cursor-pointer transition-all text-sm ${
+                className={`flex items-center gap-2.5 px-3 py-2 rounded-xl cursor-pointer transition-all text-sm ${
                   checked
-                    ? "bg-primary/10 text-primary font-semibold"
-                    : "text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    ? "bg-zinc-100 text-zinc-950 font-bold"
+                    : "text-zinc-700 hover:bg-zinc-50 hover:text-zinc-950"
                 }`}
               >
                 <input
@@ -225,10 +225,10 @@ export function FilterSidebar({ categories }: FilterSidebarProps) {
                   disabled={isPending}
                 />
                 <span
-                  className={`w-4 h-4 rounded flex items-center justify-center border-2 flex-shrink-0 transition-colors ${
+                  className={`w-4 h-4 rounded-md flex items-center justify-center border-2 flex-shrink-0 transition-colors ${
                     checked
-                      ? "bg-primary border-primary"
-                      : "border-zinc-300 dark:border-zinc-600"
+                      ? "bg-zinc-950 border-zinc-950"
+                      : "border-zinc-300"
                   }`}
                 >
                   {checked && (

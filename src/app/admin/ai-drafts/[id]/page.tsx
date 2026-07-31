@@ -203,13 +203,13 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
 
   if (error || !draft) {
     return (
-      <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white flex flex-col items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
+      <div className="min-h-screen bg-white text-zinc-900 flex flex-col items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
         <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
-        <h3 className="text-xl font-bold text-zinc-950 dark:text-white mb-2">Draft not found</h3>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-6">Could not locate draft with ID {draftId}.</p>
+        <h3 className="text-xl font-bold text-zinc-950 mb-2">Draft not found</h3>
+        <p className="text-sm text-zinc-500 mb-6">Could not locate draft with ID {draftId}.</p>
         <Link
           href="/admin/ai-drafts"
-          className="px-8 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 font-extrabold text-xs uppercase tracking-wider"
+          className="px-8 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white font-extrabold text-xs uppercase tracking-wider"
         >
           Back to AI Drafts
         </Link>
@@ -219,16 +219,16 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
 
   if (draft.status === "processing") {
     return (
-      <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white flex flex-col items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
-        <div className="rounded-3xl border border-zinc-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 shadow-xl text-center max-w-md w-full space-y-4">
-          <RefreshCw className="w-10 h-10 animate-spin text-purple-600 dark:text-purple-400 mx-auto" />
-          <h2 className="text-xl font-extrabold text-zinc-950 dark:text-white">Processing Gemini AI Vision Draft...</h2>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+      <div className="min-h-screen bg-white text-zinc-900 flex flex-col items-center justify-center px-4 pt-28 sm:pt-32 pb-16">
+        <div className="rounded-3xl border border-zinc-200/80 bg-white p-8 shadow-xl text-center max-w-md w-full space-y-4">
+          <RefreshCw className="w-10 h-10 animate-spin text-purple-600 mx-auto" />
+          <h2 className="text-xl font-extrabold text-zinc-950">Processing Gemini AI Vision Draft...</h2>
+          <p className="text-xs text-zinc-500 leading-relaxed">
             Extracting hardware specifications, physical condition grade, and market pricing ranges.
           </p>
           <button
             onClick={() => refetch()}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold text-xs uppercase tracking-wider hover:bg-purple-500/20 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-purple-500/10 text-purple-600 font-bold text-xs uppercase tracking-wider hover:bg-purple-500/20 transition-all cursor-pointer"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Refresh Status</span>
@@ -239,7 +239,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
   }
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+    <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
       {/* Background Spotlight */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(124,58,237,0.06),rgba(255,255,255,0))]" />
 
@@ -249,7 +249,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
         <div>
           <Link
             href="/admin/ai-drafts"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors mb-3"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-950 transition-colors mb-3"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to AI Listing Drafts
@@ -257,34 +257,34 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 mb-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 border border-purple-500/20 mb-2">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>AI DRAFT SPECIFICATION REVIEW</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950 dark:text-white">
+              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-950">
                 Review & Publish AI Draft
               </h1>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                Draft ID: <span className="font-mono text-zinc-900 dark:text-white font-bold">{draft._id}</span> &bull; Created {new Date(draft.createdAt).toLocaleDateString()}
+              <p className="text-sm text-zinc-500 mt-1">
+                Draft ID: <span className="font-mono text-zinc-950 font-bold">{draft._id}</span> &bull; Created {new Date(draft.createdAt).toLocaleDateString()}
               </p>
             </div>
 
             {/* Top Status Pill */}
             <div className="flex items-center gap-3">
               {draft.status === "failed" ? (
-                <span className="px-4 py-1.5 rounded-full bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 text-xs font-extrabold uppercase tracking-wider">
+                <span className="px-4 py-1.5 rounded-full bg-red-50 text-red-700 border border-red-200 text-xs font-extrabold uppercase tracking-wider">
                   Pipeline Failed
                 </span>
               ) : draft.status === "approved" ? (
-                <span className="px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-extrabold uppercase tracking-wider">
+                <span className="px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-extrabold uppercase tracking-wider">
                   Published
                 </span>
               ) : draft.status === "rejected" ? (
-                <span className="px-4 py-1.5 rounded-full bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border border-zinc-500/20 text-xs font-extrabold uppercase tracking-wider">
+                <span className="px-4 py-1.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200 text-xs font-extrabold uppercase tracking-wider">
                   Rejected
                 </span>
               ) : (
-                <span className="px-4 py-1.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 text-xs font-extrabold uppercase tracking-wider">
+                <span className="px-4 py-1.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 text-xs font-extrabold uppercase tracking-wider">
                   Ready for Review
                 </span>
               )}
@@ -293,7 +293,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
         </div>
 
         {errorMsg && (
-          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600 dark:text-red-400">
+          <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-start gap-3 text-red-600">
             <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
             <div className="text-sm font-semibold">{errorMsg}</div>
           </div>
@@ -305,8 +305,8 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
             <div className="flex items-start gap-3">
               <AlertCircle className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-extrabold text-zinc-950 dark:text-white text-base">AI Vision Pipeline Interrupted</h3>
-                <p className="text-xs text-red-600 dark:text-red-400 mt-1">
+                <h3 className="font-extrabold text-zinc-950 text-base">AI Vision Pipeline Interrupted</h3>
+                <p className="text-xs text-red-600 mt-1">
                   Error: {draft.errorMessage || "Vision parsing error."}
                 </p>
               </div>
@@ -328,8 +328,8 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
           {/* Left Column: Photos & Market Pricing */}
           <div className="lg:col-span-4 space-y-6">
             {/* Draft Photos */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+            <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-4">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <ImageIcon className="w-5 h-5 text-purple-500" />
                 Uploaded Draft Photos
               </h2>
@@ -337,7 +337,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                 {draft.rawImages.map((img, idx) => (
                   <div
                     key={idx}
-                    className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/60 dark:border-zinc-800 group"
+                    className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200/60 group"
                   >
                     <img src={img} alt={`Preview ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     {idx === 0 && (
@@ -351,12 +351,12 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
             </div>
 
             {/* AI Market Pricing Tool */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+            <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-4">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-purple-500" />
                 AI Market Pricing Suggestions
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              <p className="text-xs text-zinc-500 leading-relaxed">
                 Calculated by inspecting category market sales and hardware condition grade.
               </p>
 
@@ -364,33 +364,33 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
               draft.aiExtracted.suggestedPriceRange.sampleSize > 0 ? (
                 <div className="space-y-4">
                   <div className="grid grid-cols-3 gap-2 text-center">
-                    <div className="p-3 bg-zinc-50 dark:bg-zinc-950 rounded-2xl border border-zinc-200/60 dark:border-zinc-800">
+                    <div className="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/60">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Min</span>
-                      <p className="text-sm font-black text-zinc-950 dark:text-white mt-0.5">
+                      <p className="text-sm font-black text-zinc-950 mt-0.5">
                         ৳{(draft.aiExtracted.suggestedPriceRange.min! / 100).toLocaleString()}
                       </p>
                     </div>
 
                     <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-2xl">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Avg Mid</span>
-                      <p className="text-sm font-black text-purple-700 dark:text-purple-300 mt-0.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600">Avg Mid</span>
+                      <p className="text-sm font-black text-purple-700 mt-0.5">
                         ৳{(draft.aiExtracted.suggestedPriceRange.avg! / 100).toLocaleString()}
                       </p>
                     </div>
 
-                    <div className="p-3 bg-zinc-50 dark:bg-zinc-950 rounded-2xl border border-zinc-200/60 dark:border-zinc-800">
+                    <div className="p-3 bg-zinc-50 rounded-2xl border border-zinc-200/60">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Max</span>
-                      <p className="text-sm font-black text-zinc-950 dark:text-white mt-0.5">
+                      <p className="text-sm font-black text-zinc-950 mt-0.5">
                         ৳{(draft.aiExtracted.suggestedPriceRange.max! / 100).toLocaleString()}
                       </p>
                     </div>
                   </div>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 text-center font-medium">
-                    Sample size: <span className="font-bold text-zinc-900 dark:text-white">{draft.aiExtracted.suggestedPriceRange.sampleSize}</span> comparable gadgets analyzed.
+                  <p className="text-xs text-zinc-500 text-center font-medium">
+                    Sample size: <span className="font-bold text-zinc-950">{draft.aiExtracted.suggestedPriceRange.sampleSize}</span> comparable gadgets analyzed.
                   </p>
                 </div>
               ) : (
-                <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-semibold leading-snug">
+                <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 text-xs font-semibold leading-snug">
                   No direct market sample found. Set target selling price manually.
                 </div>
               )}
@@ -401,14 +401,14 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
           <div className="lg:col-span-8 space-y-6">
             
             {/* Basic Info */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-5">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+            <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-5">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-purple-500" />
                 Basic Product Specification
               </h2>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Suggested Product Title *
                 </label>
                 <input
@@ -416,20 +416,20 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Apple iPhone 14 Pro — 256GB Deep Purple"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                     Brand
                   </label>
                   <input
                     value={brand}
                     onChange={(e) => setBrand(e.target.value)}
                     placeholder="e.g. Apple"
-                    className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
                   />
                 </div>
 
@@ -444,7 +444,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Short Description (Listing Tagline) *
                 </label>
                 <textarea
@@ -454,12 +454,12 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                   value={shortDescription}
                   onChange={(e) => setShortDescription(e.target.value)}
                   placeholder="Concise one-liner summary"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Full AI Generated Description *
                 </label>
                 <textarea
@@ -468,14 +468,14 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Product description body"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium resize-none"
                 />
               </div>
             </div>
 
             {/* Categorization & Dynamic Specs */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-5">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+            <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-5">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <Layers className="w-5 h-5 text-purple-500" />
                 Categorization & Dynamic Specs
               </h2>
@@ -490,14 +490,14 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
               </div>
 
               {attrSchema.length > 0 && (
-                <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800 space-y-4">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                <div className="pt-3 border-t border-zinc-100 space-y-4">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-purple-600">
                     Extracted Attributes for {selectedCategory?.name}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {attrSchema.map((attr) => (
                       <div key={attr.key}>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                           {attr.label} {attr.unit ? `(${attr.unit})` : ""}{attr.required ? " *" : ""}
                         </label>
                         {attr.type === "enum" ? (
@@ -526,7 +526,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                             value={(attributes[attr.key] as string | number) ?? ""}
                             onChange={(e) => handleAttrChange(attr.key, e.target.value, attr.type)}
                             placeholder={attr.unit ? `in ${attr.unit}` : ""}
-                            className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium"
                           />
                         )}
                       </div>
@@ -537,13 +537,13 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
             </div>
 
             {/* Set Listing Price Card */}
-            <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm space-y-4">
-              <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white flex items-center gap-2">
+            <div className="p-6 rounded-3xl bg-white border border-zinc-200/80 shadow-sm space-y-4">
+              <h2 className="text-lg font-extrabold text-zinc-950 flex items-center gap-2">
                 <DollarSign className="w-5 h-5 text-purple-500" />
                 Set Listing Price
               </h2>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1.5">
                   Price (BDT Taka) *
                 </label>
                 <input
@@ -554,14 +554,14 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                   value={priceRaw}
                   onChange={(e) => setPriceRaw(e.target.value)}
                   placeholder="e.g. 75000"
-                  className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-base font-extrabold text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-base font-extrabold text-zinc-900 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
               </div>
             </div>
 
-            {/* ACTION BUTTONS BAR — FIX FOR SQUISHED BUTTON BUG */}
+            {/* ACTION BUTTONS BAR */}
             {draft.status !== "approved" && (
-              <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-zinc-200/80 dark:border-zinc-800">
+              <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-zinc-200/80">
                 
                 {/* Approve & Publish Listing Button */}
                 <button
@@ -578,7 +578,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                   type="button"
                   onClick={handleSaveOnly}
                   disabled={publishing || saving || rejecting}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white font-bold text-xs uppercase tracking-wider transition-all border border-zinc-200/80 dark:border-zinc-800 flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50 whitespace-nowrap"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 font-bold text-xs uppercase tracking-wider transition-all border border-zinc-200/80 flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50 whitespace-nowrap"
                 >
                   <Save className="w-4 h-4" />
                   <span>{saving ? "Saving..." : "Save Changes"}</span>
@@ -589,7 +589,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
                   type="button"
                   onClick={() => reject()}
                   disabled={publishing || saving || rejecting}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 font-bold text-xs uppercase tracking-wider transition-all border border-red-500/20 flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50 whitespace-nowrap"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-600 font-bold text-xs uppercase tracking-wider transition-all border border-red-500/20 flex items-center justify-center gap-2 cursor-pointer active:scale-95 disabled:opacity-50 whitespace-nowrap"
                 >
                   <XCircle className="w-4 h-4" />
                   <span>{rejecting ? "Rejecting..." : "Reject Draft"}</span>
@@ -599,7 +599,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
             )}
 
             {draft.status === "approved" && (
-              <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-extrabold text-xs uppercase tracking-wider rounded-2xl text-center">
+              <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 font-extrabold text-xs uppercase tracking-wider rounded-2xl text-center">
                 This AI draft was approved and published successfully.
               </div>
             )}
