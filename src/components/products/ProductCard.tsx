@@ -31,15 +31,15 @@ export function ProductCard({ product }: ProductCardProps) {
   const getConditionLabel = (cond: string) => {
     switch (cond) {
       case "new":
-        return "Grade A+ Brand New";
+        return "New";
       case "like_new":
-        return "Grade A+ Mint";
+        return "Open Box";
       case "good":
-        return "Grade A Verified";
+        return "Refurbished";
       case "fair":
-        return "Grade B Inspected";
+        return "Fair Condition";
       default:
-        return "AI Verified";
+        return "Inspected";
     }
   };
 

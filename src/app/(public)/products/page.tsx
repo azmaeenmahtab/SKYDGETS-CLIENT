@@ -41,7 +41,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             Explore Products
           </h1>
           <p className="mt-1 text-zinc-500">
-            Premium resale gadgets — AI-graded, verified, and ready to ship.
+            Genuine imported gadgets — quality-checked and ready to ship.
           </p>
         </div>
 

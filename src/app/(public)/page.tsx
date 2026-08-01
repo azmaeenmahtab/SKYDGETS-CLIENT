@@ -95,21 +95,21 @@ export default async function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-zinc-100 text-zinc-950 border border-zinc-300 shadow-sm mb-8 animate-pulse">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
             <Sparkles className="w-3.5 h-3.5 text-zinc-950" />
-            <span>AI-POWERED HARDWARE VERIFICATION</span>
+            <span>AUTHENTIC IMPORTED GADGETS</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-zinc-950 leading-[1.05] max-w-5xl">
-            Verified Tech. <br className="hidden sm:inline" />
+            Authentic Imports. <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-950 via-zinc-700 to-zinc-500">
-              Certified Grade.
+              Quality-Checked.
             </span>{" "}
-            Fair Price.
+            Honest Prices.
           </h1>
 
           {/* Subtitle */}
           <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-600 max-w-2xl font-normal leading-relaxed">
-            Every secondhand device on SKYDGETS undergoes automated AI visual evaluation and multi-point hardware diagnostics before going live. Instant local delivery.
+            Genuine gadgets imported directly from abroad. Every unit undergoes quality inspection before shipping so you get premium tech with fast local delivery.
           </p>
 
           {/* CTA Buttons */}
@@ -125,11 +125,11 @@ export default async function HomePage() {
               href="/about"
               className="inline-flex items-center justify-center bg-white hover:bg-zinc-100 text-zinc-950 border border-zinc-300 font-extrabold px-9 py-4 rounded-full transition-all duration-300 text-sm uppercase tracking-wider shadow-sm active:scale-95"
             >
-              Learn AI Grading
+              Why SKYDGETS
             </Link>
           </div>
 
-          {/* Interactive AI Verification Card Preview (Black Card Accent) */}
+          {/* Interactive Inspection Card Preview (Black Card Accent) */}
           <div className="mt-16 w-full max-w-3xl rounded-3xl border border-zinc-800 bg-zinc-950 text-white p-6 sm:p-8 shadow-2xl text-left relative overflow-hidden">
             <div className="absolute top-0 right-0 p-32 bg-white/5 rounded-full blur-3xl pointer-events-none" />
             
@@ -139,40 +139,40 @@ export default async function HomePage() {
                   SD
                 </div>
                 <div>
-                  <h3 className="text-base font-extrabold text-white">iPhone 14 Pro Max 256GB</h3>
-                  <p className="text-xs text-zinc-400 font-mono">SN: SD-8942-VERIFIED</p>
+                  <h3 className="text-base font-extrabold text-white">Direct Import Verification</h3>
+                  <p className="text-xs text-zinc-400 font-mono">STOCK REF: SD-IMPORT-VERIFIED</p>
                 </div>
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                <CheckCircle2 className="w-3.5 h-3.5" /> AI GRADE A+ CERTIFIED
+                <CheckCircle2 className="w-3.5 h-3.5" /> 100% AUTHENTIC IMPORT
               </div>
             </div>
 
-            {/* Diagnostic Metrics Bar */}
+            {/* Quality Metrics Bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
               <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono mb-1">
-                  <BatteryCharging className="w-3.5 h-3.5 text-emerald-400" /> Battery Health
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Authenticity
                 </div>
-                <p className="text-lg font-black text-white">96% Original</p>
+                <p className="text-lg font-black text-white">100% Genuine</p>
               </div>
               <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono mb-1">
-                  <Activity className="w-3.5 h-3.5 text-emerald-400" /> Screen Touch
+                  <Activity className="w-3.5 h-3.5 text-emerald-400" /> Quality Check
                 </div>
-                <p className="text-lg font-black text-white">100% Uniform</p>
+                <p className="text-lg font-black text-white">Pre-Shipment Passed</p>
               </div>
               <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono mb-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Body Shell
+                  <Zap className="w-3.5 h-3.5 text-emerald-400" /> Sourcing
                 </div>
-                <p className="text-lg font-black text-white">Zero Scratches</p>
+                <p className="text-lg font-black text-white">Direct Overseas</p>
               </div>
               <div className="p-3.5 rounded-2xl bg-zinc-900 border border-zinc-800">
                 <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono mb-1">
-                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> Fair Price Score
+                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> Pricing
                 </div>
-                <p className="text-lg font-black text-white">Top 5% Value</p>
+                <p className="text-lg font-black text-white">Direct Import Value</p>
               </div>
             </div>
           </div>
@@ -183,16 +183,16 @@ export default async function HomePage() {
       {/* 2. CREATIVE INFINITE MARQUEE TICKER (Black Accent Bar) */}
       <section className="bg-zinc-950 text-white py-4 border-y border-zinc-800 overflow-hidden select-none">
         <div className="flex whitespace-nowrap gap-8 animate-marquee text-xs font-mono font-extrabold tracking-widest uppercase">
-          <span>✦ VERIFIED SECONDHAND ELECTRONICS</span>
-          <span>✦ AI DIAGNOSTIC INSPECTED</span>
-          <span>✦ CERTIFIED GRADE A+</span>
-          <span>✦ FAIR MARKET PRICING</span>
-          <span>✦ 7-DAY RETURN PROTECTION</span>
-          <span>✦ FAST LOCAL SHIPPING</span>
-          <span>✦ VERIFIED SECONDHAND ELECTRONICS</span>
-          <span>✦ AI DIAGNOSTIC INSPECTED</span>
-          <span>✦ CERTIFIED GRADE A+</span>
-          <span>✦ FAIR MARKET PRICING</span>
+          <span>✦ GENUINE IMPORTED GADGETS</span>
+          <span>✦ PRE-SHIPMENT QUALITY CHECKED</span>
+          <span>✦ DIRECT OVERSEAS SOURCING</span>
+          <span>✦ HONEST MARKET PRICING</span>
+          <span>✦ FAST LOCAL DELIVERY</span>
+          <span>✦ TRANSPARENT SPECIFICATIONS</span>
+          <span>✦ GENUINE IMPORTED GADGETS</span>
+          <span>✦ PRE-SHIPMENT QUALITY CHECKED</span>
+          <span>✦ DIRECT OVERSEAS SOURCING</span>
+          <span>✦ HONEST MARKET PRICING</span>
         </div>
       </section>
 
@@ -343,10 +343,10 @@ export default async function HomePage() {
               The SkyDgets Advantage
             </span>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-zinc-950 mt-2">
-              Why Choose Verified Tech?
+              Why Choose SKYDGETS Imports?
             </h2>
             <p className="mt-4 text-zinc-600 font-normal text-base sm:text-lg">
-              We eliminate secondhand buying risk through algorithmic visual evaluation and standardized hardware benchmarks.
+              We eliminate middleman markups and grey-market risks by sourcing genuine gadgets directly from abroad with thorough pre-shipment checks.
             </p>
           </div>
 
@@ -360,7 +360,7 @@ export default async function HomePage() {
                     SD
                   </div>
                   <h3 className="text-xl font-black text-zinc-950 uppercase tracking-wide">
-                    SKYDGETS Certified
+                    SKYDGETS Direct Imports
                   </h3>
                 </div>
 
@@ -368,29 +368,29 @@ export default async function HomePage() {
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-950">AI Condition Grading</p>
-                      <p className="text-xs text-zinc-500">Scanned for micro-scratches & body wear</p>
+                      <p className="text-sm font-bold text-zinc-950">Direct Overseas Sourcing</p>
+                      <p className="text-xs text-zinc-500">Sourced directly from verified global channels</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-950">Multi-Point Hardware Audit</p>
-                      <p className="text-xs text-zinc-500">Battery health & screen touch uniformity certified</p>
+                      <p className="text-sm font-bold text-zinc-950">Pre-Shipment Quality Check</p>
+                      <p className="text-xs text-zinc-500">Every unit inspected for performance & condition</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-950">Algorithmic Fair Valuation</p>
-                      <p className="text-xs text-zinc-500">No inflated prices or random seller markups</p>
+                      <p className="text-sm font-bold text-zinc-950">100% Authentic Product Guarantee</p>
+                      <p className="text-xs text-zinc-500">Verified genuine hardware with exact specs</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-950">7-Day Guarantee Protection</p>
-                      <p className="text-xs text-zinc-500">Return protection if device specs differ</p>
+                      <p className="text-sm font-bold text-zinc-950">Fast Local Delivery & Fair Prices</p>
+                      <p className="text-xs text-zinc-500">Transparent pricing with express doorstep shipping</p>
                     </div>
                   </li>
                 </ul>
@@ -403,7 +403,7 @@ export default async function HomePage() {
                     VS
                   </div>
                   <h3 className="text-xl font-bold text-zinc-400 uppercase tracking-wide">
-                    Random Marketplaces
+                    Unverified Grey Market
                   </h3>
                 </div>
 
@@ -411,29 +411,29 @@ export default async function HomePage() {
                   <li className="flex items-start gap-3 opacity-70">
                     <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-700">Unverified Photos</p>
-                      <p className="text-xs text-zinc-400">Stock images hiding physical scratches</p>
+                      <p className="text-sm font-bold text-zinc-700">Unverified Products</p>
+                      <p className="text-xs text-zinc-400">Unknown origin or counterfeit risk</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3 opacity-70">
                     <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-700">Hidden Battery Degradation</p>
-                      <p className="text-xs text-zinc-400">No hardware diagnostics or battery health checks</p>
+                      <p className="text-sm font-bold text-zinc-700">Hidden Defect Risk</p>
+                      <p className="text-xs text-zinc-400">No pre-shipment quality verification</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3 opacity-70">
                     <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-700">Overpriced / Endless Haggling</p>
-                      <p className="text-xs text-zinc-400">Arbitrary seller pricing without benchmarks</p>
+                      <p className="text-sm font-bold text-zinc-700">Excessive Middleman Markups</p>
+                      <p className="text-xs text-zinc-400">Inflated pricing from multiple distributors</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3 opacity-70">
                     <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-bold text-zinc-700">Zero Returns & High Risk</p>
-                      <p className="text-xs text-zinc-400">Once paid, seller disappears</p>
+                      <p className="text-sm font-bold text-zinc-700">Uncertain Delivery & Zero Support</p>
+                      <p className="text-xs text-zinc-400">Long delays and unhelpful sellers</p>
                     </div>
                   </li>
                 </ul>
@@ -451,10 +451,10 @@ export default async function HomePage() {
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold tracking-widest text-zinc-500 uppercase">
-              3-Step Diagnostic
+              Import Pipeline
             </span>
             <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-zinc-950 mt-2">
-              How AI Inspection Works
+              How Direct Sourcing Works
             </h2>
           </div>
 
@@ -465,14 +465,14 @@ export default async function HomePage() {
                   01
                 </span>
                 <h3 className="text-xl font-black text-white mb-2">
-                  Visual Damage Scan
+                  Direct Overseas Sourcing
                 </h3>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">
-                  High-resolution photo evaluation checks body panels, glass, and bezel wear to classify cosmetic condition.
+                  Curated tech imported directly from manufacturers and trusted global suppliers, bypassing middleman markups.
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-zinc-800 flex items-center gap-2 text-xs font-mono text-zinc-400">
-                <Sparkles className="w-3.5 h-3.5 text-white" /> Visual AI Inspection
+                <Sparkles className="w-3.5 h-3.5 text-white" /> Direct Global Sourcing
               </div>
             </div>
 
@@ -482,14 +482,14 @@ export default async function HomePage() {
                   02
                 </span>
                 <h3 className="text-xl font-black text-white mb-2">
-                  Hardware Diagnostic
+                  Pre-Shipment Quality Check
                 </h3>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">
-                  Deep verification of battery health cycles, display touch uniformity, camera sensors, and wireless connectivity.
+                  Visual and operational checks on every unit before shipping to verify hardware functionality and packaging.
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-zinc-800 flex items-center gap-2 text-xs font-mono text-zinc-400">
-                <Zap className="w-3.5 h-3.5 text-white" /> Multi-Point Test
+                <Zap className="w-3.5 h-3.5 text-white" /> Thorough Quality Inspection
               </div>
             </div>
 
@@ -499,14 +499,14 @@ export default async function HomePage() {
                   03
                 </span>
                 <h3 className="text-xl font-black text-white mb-2">
-                  Fair Price Benchmark
+                  Honest Pricing & Delivery
                 </h3>
                 <p className="text-sm text-zinc-400 leading-relaxed font-light">
-                  Instant price matching based on certified grade (Grade A+, A, B) ensuring buyers pay true market value.
+                  Transparent direct-import prices with no hidden fees, shipped fast and safely directly to your doorstep.
                 </p>
               </div>
               <div className="mt-8 pt-4 border-t border-zinc-800 flex items-center gap-2 text-xs font-mono text-zinc-400">
-                <CheckCircle2 className="w-3.5 h-3.5 text-white" /> Certified Guarantee
+                <CheckCircle2 className="w-3.5 h-3.5 text-white" /> Verified Delivery
               </div>
             </div>
           </div>
@@ -549,7 +549,7 @@ export default async function HomePage() {
                 Ready to Upgrade Your Tech?
               </h2>
               <p className="mt-4 text-zinc-400 font-light text-base sm:text-lg">
-                Discover verified smartphones, graphics cards, components, and audio gear backed by automated grading assurance.
+                Discover genuine smartphones, graphics cards, components, and audio gear quality-checked and delivered to your doorstep.
               </p>
               <div className="mt-8 flex justify-center">
                 <Link

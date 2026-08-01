@@ -19,20 +19,20 @@ import {
 
 const FAQS = [
   {
-    question: "How does AI visual hardware verification work?",
-    answer: "When a seller submits a gadget, our Gemini Vision AI pipeline scans the photos to analyze cosmetic condition, screen scratches, chassis scuffs, and component authenticity before issuing a verification grade."
+    question: "Are the products sold on SKYDGETS genuine and authentic?",
+    answer: "Yes, 100%. Every product on SKYDGETS is sourced directly from manufacturers or trusted global suppliers abroad. We do not sell grey-market or counterfeit items. Our AI-assisted listing pipeline also verifies product details against photos to ensure specs are accurate."
   },
   {
-    question: "What is your return & hardware guarantee policy?",
-    answer: "Every certified device comes with a 7-day hardware guarantee. If the physical condition or functionality does not match the AI evaluation report, you receive a hassle-free full refund."
+    question: "What does pre-shipment quality check mean?",
+    answer: "Before any unit is listed and shipped, it goes through a quality inspection to confirm hardware functionality, check for any visible damage, and verify that the product matches the described specifications. Items that don't pass the check are not listed."
   },
   {
     question: "How fast is delivery?",
-    answer: "Orders placed before 2:00 PM are processed the same day. Local express delivery typically arrives within 24 hours, while nationwide shipping takes 1–3 business days."
+    answer: "Orders placed before 2:00 PM are typically processed the same day. Local express delivery in Dhaka usually arrives within 24 hours. Nationwide delivery takes 1–3 business days depending on your location."
   },
   {
-    question: "Can I list or sell my gadget on SKYDGETS?",
-    answer: "Yes! Simply create an account, upload photos of your device, and let our AI draft generator evaluate your item, draft the description, and suggest fair market prices."
+    question: "What payment methods do you accept?",
+    answer: "We currently accept Cash on Delivery (COD) across Bangladesh. Digital payment options including bKash and Nagad are being rolled out soon. All pricing is in Bangladeshi Taka (BDT) with no hidden charges."
   }
 ];
 
@@ -84,7 +84,7 @@ export default function ContactPage() {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-zinc-600 max-w-2xl font-normal leading-relaxed">
-            Have questions about an item, order shipping status, or AI hardware grading? Send us a message and our support team will respond promptly.
+            Have questions about a product, import origin, delivery timeline, or payment options? Send us a message and our support team will get back to you promptly.
           </p>
         </div>
       </section>

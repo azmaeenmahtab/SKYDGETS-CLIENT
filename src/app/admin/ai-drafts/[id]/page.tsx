@@ -74,7 +74,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
   const [categoryId, setCategoryId] = useState("");
   const [brand, setBrand] = useState("");
   const [priceRaw, setPriceRaw] = useState(""); // Taka string
-  const [condition, setCondition] = useState<string>("like_new");
+  const [condition, setCondition] = useState<string>("new");
   const [attributes, setAttributes] = useState<Record<string, string | number | boolean>>({});
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -91,7 +91,7 @@ export default function AIReviewPage({ params }: ReviewPageProps) {
       );
       setCategoryId((ai.suggestedCategoryId as string) || "");
       setBrand(draft.overrideBrand || ai.detectedBrand || "");
-      setCondition(ai.detectedConditionGrade || "like_new");
+      setCondition(ai.detectedConditionGrade || "new");
       
       const initialPrice = draft.overridePrice 
         ? draft.overridePrice / 100 

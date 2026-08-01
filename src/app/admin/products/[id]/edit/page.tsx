@@ -81,7 +81,7 @@ export default function EditProductPage({ params }: EditProductPageProps) {
   const [brand, setBrand] = useState("");
   const [priceRaw, setPriceRaw] = useState("");
   const [compareAtPriceRaw, setCompareAtPriceRaw] = useState("");
-  const [condition, setCondition] = useState<string>("like_new");
+  const [condition, setCondition] = useState<string>("new");
   const [stock, setStock] = useState("1");
   const [status, setStatus] = useState("published");
   const [attributes, setAttributes] = useState<Record<string, any>>({});
@@ -98,7 +98,7 @@ export default function EditProductPage({ params }: EditProductPageProps) {
       setBrand(product.brand || "");
       setPriceRaw(String(product.price ? product.price / 100 : ""));
       setCompareAtPriceRaw(product.compareAtPrice ? String(product.compareAtPrice / 100) : "");
-      setCondition(product.condition || "like_new");
+      setCondition(product.condition || "new");
       setStock(String(product.stock ?? 1));
       setStatus(product.status || "published");
       setAttributes(product.attributes || {});

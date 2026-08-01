@@ -1,6 +1,6 @@
 # SKYDGETS — Client
 
-**Buy and sell secondhand gadgets with confidence.** SKYDGETS is a full-stack gadget resale marketplace built around AI-assisted listing creation and an intelligent shopping assistant — not just another storefront template.
+**Authentic gadgets, imported from abroad and quality-checked before they ship.** SKYDGETS is a full-stack gadget storefront built around AI-assisted listing creation and an intelligent shopping assistant — not just another storefront template.
 
 This repository is the **frontend** — Next.js 15, TypeScript, HeroUI v3. The backend/API lives in a separate repository ([link here]).
 
@@ -10,9 +10,9 @@ This repository is the **frontend** — Next.js 15, TypeScript, HeroUI v3. The b
 
 ### 🧠 AI Smart Listing Assistant
 Upload a few photos of a gadget and a short note, and the assistant does the rest:
-- **Vision analysis** — detects the device, its condition, and visible defects
-- **Auto-classification** — matches it to the right category and fills in category-specific specs (storage, brand, condition grade, etc.)
-- **Copy generation** — writes an honest, accurate title and description
+- **Vision analysis** — identifies the device, confirms no visible defects as a pre-shipment quality check
+- **Auto-classification** — matches it to the right category and fills in category-specific specs (storage, brand, etc.)
+- **Copy generation** — writes an accurate title and description focused on specs, features, and authenticity
 - **Price suggestion** — checks your own existing catalog for comparable listings and suggests a fair price range
 
 Nothing publishes automatically — every AI-generated field is editable on a review screen before it becomes a live listing.

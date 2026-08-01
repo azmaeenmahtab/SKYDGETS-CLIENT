@@ -44,13 +44,15 @@ export default async function ProductDetailsPage({ params }: PageProps) {
   const gallery = product.images.filter((img) => !img.isPrimary);
 
   const conditionColorMap: Record<string, string> = {
-    new: "bg-green-100 text-green-700",
-    like_new: "bg-blue-100 text-blue-700",
-    good: "bg-yellow-100 text-yellow-700",
-    fair: "bg-orange-100 text-orange-700",
-    for_parts: "bg-red-100 text-red-700",
+    new: "bg-zinc-100 text-zinc-600",
+    like_new: "bg-blue-50 text-blue-700",
+    good: "bg-yellow-50 text-yellow-700",
+    fair: "bg-orange-50 text-orange-700",
+    for_parts: "bg-red-50 text-red-700",
   };
-  const conditionClass = conditionColorMap[product.condition] ?? "bg-zinc-100 text-zinc-700";
+  const conditionClass = conditionColorMap[product.condition] ?? "bg-zinc-100 text-zinc-600";
+  // Only show the badge visually distinct for non-new items; for new, it's just a quiet label
+  const showConditionBadge = product.condition !== "new";
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white text-zinc-900">
@@ -93,11 +95,13 @@ export default async function ProductDetailsPage({ params }: PageProps) {
             <div>
               <div className="flex items-start justify-between gap-4">
                 <h1 className="text-3xl font-extrabold tracking-tight text-zinc-950">{product.title}</h1>
-                <span
-                  className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 mt-1 ${conditionClass}`}
-                >
-                  {formatCondition(product.condition)}
-                </span>
+                {showConditionBadge && (
+                  <span
+                    className={`text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 mt-1 ${conditionClass}`}
+                  >
+                    {formatCondition(product.condition)}
+                  </span>
+                )}
               </div>
               {product.brand && (
                 <p className="text-zinc-500 text-sm mt-1">

@@ -22,11 +22,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SKYDGETS — Gadget Resale",
+    default: "SKYDGETS — Authentic Imported Gadgets",
     template: "%s | SKYDGETS",
   },
   description:
-    "Buy and sell premium second-hand gadgets. Smartphones, peripherals, and more.",
+    "Genuine, quality-checked gadgets imported from abroad at honest prices. Smartphones, peripherals, and more.",
 };
 
 export default function RootLayout({

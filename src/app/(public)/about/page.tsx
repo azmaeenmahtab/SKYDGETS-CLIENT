@@ -17,43 +17,43 @@ import {
 
 export const metadata = {
   title: "About Us — SKYDGETS",
-  description: "Learn how SKYDGETS uses AI visual evaluation and automated multi-point hardware diagnostics to redefine secondhand gadget resale.",
+  description: "Learn how SKYDGETS sources genuine gadgets directly from abroad, quality-checks every unit, and delivers them to Bangladesh at fair, transparent prices.",
 };
 
 const STATS = [
-  { label: "AI Inspection Accuracy", value: "99.4%", description: "Automated multi-point hardware & visual grading" },
-  { label: "Verified Gadgets Sold", value: "12,500+", description: "Smartphones, laptops, monitors, and peripherals" },
-  { label: "Average Delivery Time", value: "24 Hours", description: "Express local fulfillment & insured shipping" },
-  { label: "Buyer Protection", value: "100%", description: "Risk-free hardware guarantee & verified sellers" },
+  { label: "Listings Accuracy", value: "99.4%", description: "AI-assisted specs & description accuracy" },
+  { label: "Gadgets Delivered", value: "12,500+", description: "Smartphones, laptops, monitors, and peripherals" },
+  { label: "Average Delivery Time", value: "24 Hours", description: "Express local fulfillment & reliable shipping" },
+  { label: "Quality Verified", value: "100%", description: "Every unit pre-shipment checked before dispatch" },
 ];
 
 const PILLARS = [
   {
-    icon: Cpu,
-    title: "AI Visual & Hardware Diagnostics",
-    description: "Every device submitted to SKYDGETS undergoes automated vision model analysis to detect cosmetic scuffs, screen micro-scratches, and battery wear metrics before listing.",
-    badge: "Gemini Vision Inside",
+    icon: ShieldCheck,
+    title: "Directly Sourced from Abroad",
+    description: "We source gadgets directly from manufacturers and trusted global channels — eliminating middlemen so you get genuine products without unnecessary price markups.",
+    badge: "Direct Import",
     badgeColor: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20",
   },
   {
-    icon: TrendingUp,
-    title: "Dynamic Fair Price Engine",
-    description: "Our machine-learning pricing pipeline analyzes real-time market values, historical sales, and physical hardware grades to ensure fair deals for both buyers and sellers.",
-    badge: "Market Balanced",
+    icon: Cpu,
+    title: "Pre-Shipment Quality Inspection",
+    description: "Every unit undergoes a quality check before it ships — verifying that hardware functions correctly, packaging is intact, and specs match what's listed.",
+    badge: "QC Verified",
     badgeColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
   },
   {
-    icon: ShieldCheck,
-    title: "Uncompromising Authenticity",
-    description: "No counterfeit parts, no hidden defects. We verify serial numbers, IMEI status, and component integrity so you get exactly what is advertised.",
-    badge: "100% Certified",
+    icon: TrendingUp,
+    title: "AI-Accurate Listings & Fair Pricing",
+    description: "Our Gemini AI pipeline reads product photos to auto-fill accurate specs and generate honest descriptions, so listings reflect what you actually receive.",
+    badge: "Gemini AI Powered",
     badgeColor: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
   },
   {
-    icon: RefreshCw,
-    title: "Sustainable Tech Ecosystem",
-    description: "By extending the lifecycle of high-tier electronics, we reduce e-waste and make premium smartphones, tablets, and PC hardware accessible to everyone.",
-    badge: "Eco-Conscious",
+    icon: Zap,
+    title: "Fast, Transparent Delivery",
+    description: "Orders are processed same-day and dispatched with express local shipping. No surprise fees, no opaque handling charges — just fast delivery to your doorstep.",
+    badge: "Express Shipping",
     badgeColor: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
   },
 ];
@@ -61,18 +61,18 @@ const PILLARS = [
 const STEPS = [
   {
     step: "01",
-    title: "Multi-Point AI Scan",
-    description: "Sellers upload full-resolution photos. Our Gemini Vision pipeline analyzes cosmetic grade, detects scuffs, and auto-fills technical specifications.",
+    title: "Curated Global Sourcing",
+    description: "We identify and import genuine gadgets from trusted manufacturers and suppliers abroad, selecting products based on quality, authenticity, and real market demand.",
   },
   {
     step: "02",
-    title: "Automated Price Evaluation",
-    description: "The pricing engine calculates optimal market price ranges based on condition grade, brand demand, and live component pricing.",
+    title: "Pre-Shipment Quality Check",
+    description: "Every unit is checked before it leaves — confirming hardware functionality, intact packaging, and spec accuracy, assisted by AI-powered listing review for honest descriptions.",
   },
   {
     step: "03",
-    title: "Verified Delivery to Doorstep",
-    description: "Buyers order with full hardware protection. Items are verified, securely packed, and delivered with express shipping.",
+    title: "Doorstep Delivery, Honest Pricing",
+    description: "Orders ship fast with express local delivery. Pricing is set transparently based on direct import cost, with no hidden middleman layers.",
   },
 ];
 
@@ -90,20 +90,20 @@ export default function AboutPage() {
           {/* Tag Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-purple-500/10 text-purple-600 border border-purple-500/20 shadow-sm mb-6">
             <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-            <span>REDEFINING SECONDHAND TECH</span>
+            <span>GENUINE IMPORTED GADGETS</span>
           </div>
 
           {/* Main Title */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-zinc-950 leading-[1.08] max-w-4xl">
-            Verified Hardware. <br className="hidden sm:inline" />
+            Authentic Tech. <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-500">
-              Zero Guesswork.
+              Honest Prices.
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="mt-6 text-base sm:text-lg md:text-xl text-zinc-600 max-w-2xl font-normal leading-relaxed">
-            SKYDGETS is the premier resale marketplace engineered with automated AI visual grading and multi-point hardware evaluation to make buying and selling pre-owned gadgets effortless and transparent.
+            SKYDGETS sources genuine gadgets directly from abroad, quality-checks every unit before it ships, and delivers them to Bangladesh at transparent, fair prices — no middlemen, no grey-market risk.
           </p>
 
           {/* CTA Buttons */}
@@ -151,13 +151,13 @@ export default function AboutPage() {
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 mx-auto max-w-6xl">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-purple-600 dark:text-purple-400 mb-2">
-            Engineered for Integrity
+            Built for Buyers Who Care
           </h2>
           <h3 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
-            Why Gadget Resale Needs SKYDGETS
+            Why SKYDGETS Exists
           </h3>
           <p className="mt-4 text-zinc-600 dark:text-zinc-400 text-base sm:text-lg">
-            Traditional secondhand markets are fraught with hidden flaws and arbitrary prices. We built a data-backed pipeline to solve it.
+            Importing gadgets from abroad means navigating grey markets, counterfeit risks, and opaque pricing. We built SKYDGETS to do that work for you — sourcing genuine products directly and passing the savings on.
           </p>
         </div>
 
@@ -194,10 +194,10 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-2">
-              Automated Process
+              How It Works
             </h2>
             <h3 className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white">
-              From Inspection to Delivery
+              From Sourcing to Doorstep
             </h3>
           </div>
 
@@ -229,10 +229,10 @@ export default function AboutPage() {
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div className="max-w-xl">
               <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
-                Ready to find your next verified gadget?
+                Ready to get your next genuine import?
               </h3>
               <p className="mt-3 text-zinc-400 text-sm sm:text-base">
-                Browse our live catalog of certified smartphones, tablets, monitors, and peripherals with instant shipping.
+                Browse our catalog of authentic smartphones, tablets, monitors, and peripherals — quality-checked and ready to ship.
               </p>
             </div>
             <Link

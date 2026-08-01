@@ -29,7 +29,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-zinc-500 max-w-sm leading-relaxed font-light mt-1">
-              {siteConfig.tagline} Buy & sell verified secondhand electronics backed by automated AI condition grading and diagnostic assurance.
+              {siteConfig.tagline} Authentic gadgets imported directly from abroad, quality-checked before dispatch, and delivered fast.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-2 text-xs text-zinc-500 font-mono">
             <ShieldCheck className="w-4 h-4 text-white" />
-            <span>AI Verified Diagnostics Platform</span>
+            <span>AI-Verified Specs &amp; Quality Platform</span>
           </div>
         </div>
       </div>
